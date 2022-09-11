@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import Router from 'next/router';
 import { Fragment, useState } from 'react';
 import { Subject } from 'rxjs';
 
@@ -17,6 +18,10 @@ export function NavigationBar({
   toggleSidebar.subscribe(() => {
     setSidebarOpen(!sidebarOpen);
   });
+
+  const goToAccount = () => {
+    Router.push('/account');
+  };
 
   return (
     <>
@@ -114,7 +119,10 @@ export function NavigationBar({
                         <p className='text-base font-medium text-white'>
                           GoPro
                         </p>
-                        <p className='text-sm font-medium text-indigo-200 group-hover:text-white'>
+                        <p
+                          className='text-sm font-medium text-indigo-200 group-hover:text-white'
+                          onClick={goToAccount}
+                        >
                           View account
                         </p>
                       </div>
@@ -174,7 +182,10 @@ export function NavigationBar({
                 </div>
                 <div className='ml-3'>
                   <p className='text-sm font-medium text-white'>GoPro</p>
-                  <p className='text-xs font-medium text-indigo-200 group-hover:text-white'>
+                  <p
+                    className='text-xs font-medium text-indigo-200 group-hover:text-white'
+                    onClick={goToAccount}
+                  >
                     View account
                   </p>
                 </div>

@@ -1,29 +1,20 @@
-import {
-  AdjustmentsHorizontalIcon,
-  BellIcon,
-  HomeIcon,
-  UserPlusIcon,
-} from '@heroicons/react/24/outline';
-import { useState } from 'react';
-
 import AppLayout from '@/components/layout/AppLayout';
 
-const navigation = [
-  { name: 'Catalog', href: '#', icon: HomeIcon, current: true },
-  { name: 'Engagement', href: '#', icon: UserPlusIcon, current: false },
-  { name: 'Notifications', href: '#', icon: BellIcon, current: false },
-  {
-    name: 'Settings',
-    href: '#',
-    icon: AdjustmentsHorizontalIcon,
-    current: false,
-  },
-];
-
-export default function Example() {
+export default function Catalog() {
   return (
     <>
-      <AppLayout></AppLayout>
+      <AppLayout>
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'>
+          <h1 className='text-2xl font-semibold text-gray-900'>Catalog</h1>
+        </div>
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'>
+          {/* Replace with your content */}
+          <div className='py-4'>
+            <div className='h-96 rounded-lg border-4 border-dashed border-gray-200' />
+          </div>
+          {/* /End replace */}
+        </div>
+      </AppLayout>
     </>
   );
 }

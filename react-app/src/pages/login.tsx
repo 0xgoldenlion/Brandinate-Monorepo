@@ -11,7 +11,7 @@ export default function Login() {
       method: 'eth_requestAccounts',
     });
     setUserSigner(accounts[0]);
-    if (userSigner) Router.push('/account');
+    if (userSigner) Router.push('/catalog');
   };
 
   return (
