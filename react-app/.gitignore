@@ -39,4 +39,4 @@ sitemap.xml
 sitemap-*.xml
 
 # IntelliJ
-/.idea
+.idea

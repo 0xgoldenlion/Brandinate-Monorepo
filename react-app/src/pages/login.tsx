@@ -118,7 +118,7 @@ export default function Login() {
               </div>
 
               <div className='mt-6 grid grid-cols-3 gap-3'>
-                <div onClick={() => connectMetaMask()}>
+                <div onClick={connectMetaMask}>
                   <div className='inline-flex w-full cursor-pointer justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50'>
                     <span className='sr-only'>Sign in with Facebook</span>
                     <MetaMaskIcon className='h-5 w-5' />
