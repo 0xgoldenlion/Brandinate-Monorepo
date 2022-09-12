@@ -2,10 +2,10 @@ import Router from 'next/router';
 
 export default function Account() {
   return (
-    <div className='my-24 md:mx-48 lg:mx-96'>
-      <form className='space-y-8 divide-y divide-gray-200'>
+    <div className='flex justify-center'>
+      <form className='space-y-8 divide-y divide-gray-200 py-24 md:w-2/3 lg:w-1/2'>
         <div className='space-y-8 divide-y divide-gray-200'>
-          <div>
+          <div className='pt-8'>
             <div>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>
                 Account
@@ -14,25 +14,76 @@ export default function Account() {
                 Here you can edit your account settings.
               </p>
             </div>
-
             <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
-              <div className='sm:col-span-4'>
+              <div className='sm:col-span-3'>
                 <label
-                  htmlFor='username'
+                  htmlFor='first-name'
                   className='block text-sm font-medium text-gray-700'
                 >
-                  Username
+                  Display Name
                 </label>
-                <div className='mt-1 flex rounded-md shadow-sm'>
-                  <span className='inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 sm:text-sm'>
-                    workcation.com/
-                  </span>
+                <div className='mt-1'>
                   <input
                     type='text'
-                    name='username'
-                    id='username'
-                    autoComplete='username'
-                    className='block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                    name='first-name'
+                    autoComplete='given-name'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
+                </div>
+              </div>
+
+              <div className='sm:col-span-3'>
+                <label
+                  htmlFor='category'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Category
+                </label>
+                <div className='mt-1'>
+                  <select
+                    name='category'
+                    autoComplete='category-name'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  >
+                    <option>Sports wear</option>
+                    <option>Electronics</option>
+                    <option>Clothing</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className='sm:col-span-3'>
+                <label
+                  htmlFor='brand-site'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Brand site
+                </label>
+                <div className='mt-1'>
+                  <input
+                    type='text'
+                    name='brand-site'
+                    autoComplete='brand-site'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                    placeholder='https://www.apple.com'
+                  />
+                </div>
+              </div>
+
+              <div className='sm:col-span-3'>
+                <label
+                  htmlFor='slogan'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Slogan
+                </label>
+                <div className='mt-1'>
+                  <input
+                    type='text'
+                    name='slogan'
+                    autoComplete='slogan'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                    placeholder='Think different.'
                   />
                 </div>
               </div>
@@ -46,52 +97,28 @@ export default function Account() {
                 </label>
                 <div className='mt-1'>
                   <textarea
-                    id='about'
                     name='about'
-                    rows={3}
+                    rows={5}
                     className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                     defaultValue={''}
                   />
                 </div>
                 <p className='mt-2 text-sm text-gray-500'>
-                  Write a few sentences about yourself.
+                  Give your customers an overview about your company.
                 </p>
               </div>
-
+            </div>
+          </div>
+          <div className='pt-1'>
+            <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
               <div className='sm:col-span-6'>
                 <label
-                  htmlFor='photo'
-                  className='block text-sm font-medium text-gray-700'
+                  htmlFor='logo'
+                  className='text-lg font-medium leading-6 text-gray-900'
                 >
-                  Photo
+                  Logo
                 </label>
-                <div className='mt-1 flex items-center'>
-                  <span className='h-12 w-12 overflow-hidden rounded-full bg-gray-100'>
-                    <svg
-                      className='h-full w-full text-gray-300'
-                      fill='currentColor'
-                      viewBox='0 0 24 24'
-                    >
-                      <path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
-                    </svg>
-                  </span>
-                  <button
-                    type='button'
-                    className='ml-5 rounded-md border border-gray-300 bg-white py-2 px-3 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-                  >
-                    Change
-                  </button>
-                </div>
-              </div>
-
-              <div className='sm:col-span-6'>
-                <label
-                  htmlFor='cover-photo'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Cover photo
-                </label>
-                <div className='mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6'>
+                <div className='mt-4 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6'>
                   <div className='space-y-1 text-center'>
                     <svg
                       className='mx-auto h-12 w-12 text-gray-400'
@@ -114,7 +141,6 @@ export default function Account() {
                       >
                         <span>Upload a file</span>
                         <input
-                          id='file-upload'
                           name='file-upload'
                           type='file'
                           className='sr-only'
@@ -130,60 +156,22 @@ export default function Account() {
               </div>
             </div>
           </div>
-
-          <div className='pt-8'>
+          <div className='pt-5'>
             <div>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                Brand Information
+                Contact
               </h3>
             </div>
             <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
               <div className='sm:col-span-3'>
                 <label
-                  htmlFor='first-name'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Display Name
-                </label>
-                <div className='mt-1'>
-                  <input
-                    type='text'
-                    name='first-name'
-                    id='first-name'
-                    autoComplete='given-name'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-                  />
-                </div>
-              </div>
-
-              <div className='sm:col-span-3'>
-                <label
-                  htmlFor='last-name'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Last name
-                </label>
-                <div className='mt-1'>
-                  <input
-                    type='text'
-                    name='last-name'
-                    id='last-name'
-                    autoComplete='family-name'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-                  />
-                </div>
-              </div>
-
-              <div className='sm:col-span-4'>
-                <label
                   htmlFor='email'
                   className='block text-sm font-medium text-gray-700'
                 >
-                  Email address
+                  Email
                 </label>
                 <div className='mt-1'>
                   <input
-                    id='email'
                     name='email'
                     type='email'
                     autoComplete='email'
@@ -194,41 +182,36 @@ export default function Account() {
 
               <div className='sm:col-span-3'>
                 <label
+                  htmlFor='phone'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Phone
+                </label>
+                <div className='mt-1'>
+                  <input
+                    name='phone'
+                    type='text'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
+                </div>
+              </div>
+
+              <div className='sm:col-span-2'>
+                <label
                   htmlFor='country'
                   className='block text-sm font-medium text-gray-700'
                 >
                   Country
                 </label>
-                <div className='mt-1'>
-                  <select
-                    id='country'
+                <select
                     name='country'
                     autoComplete='country-name'
                     className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                   >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
+                    <option>United Nations</option>
+                    <option>Germany</option>
+                    <option>Portugal</option>
                   </select>
-                </div>
-              </div>
-
-              <div className='sm:col-span-6'>
-                <label
-                  htmlFor='street-address'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Street address
-                </label>
-                <div className='mt-1'>
-                  <input
-                    type='text'
-                    name='street-address'
-                    id='street-address'
-                    autoComplete='street-address'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-                  />
-                </div>
               </div>
 
               <div className='sm:col-span-2'>
@@ -242,25 +225,6 @@ export default function Account() {
                   <input
                     type='text'
                     name='city'
-                    id='city'
-                    autoComplete='address-level2'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-                  />
-                </div>
-              </div>
-
-              <div className='sm:col-span-2'>
-                <label
-                  htmlFor='region'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  State / Province
-                </label>
-                <div className='mt-1'>
-                  <input
-                    type='text'
-                    name='region'
-                    id='region'
                     autoComplete='address-level1'
                     className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                   />
@@ -278,8 +242,24 @@ export default function Account() {
                   <input
                     type='text'
                     name='postal-code'
-                    id='postal-code'
                     autoComplete='postal-code'
+                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+                  />
+                </div>
+              </div>
+
+              <div className='sm:col-span-6'>
+                <label
+                  htmlFor='street-address'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Business address
+                </label>
+                <div className='mt-1'>
+                  <input
+                    type='text'
+                    name='street-address'
+                    autoComplete='street-address'
                     className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                   />
                 </div>
