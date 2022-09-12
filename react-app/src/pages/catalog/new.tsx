@@ -1,6 +1,7 @@
 import Dropdown from '@/components/form-controls/Dropdown';
 import Input from '@/components/form-controls/Input';
 import AppLayout from '@/components/layout/AppLayout';
+import Link from 'next/link';
 
 export default function NewProduct() {
   return (
@@ -10,8 +11,8 @@ export default function NewProduct() {
       </div>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'>
         <div className='py-4'>
-          <div className='h-96 rounded-lg border-2 border-solid border-gray-200'>
-            <div className='m-8 grid grid-cols-6 gap-y-4 gap-x-8'>
+          <div className='flex h-96 flex-col justify-between rounded-lg border-2 border-solid border-gray-200 py-4'>
+            <div className='m-6 grid grid-cols-6 gap-y-4 gap-x-8'>
               <div className='col-span-3'>
                 <Input
                   name='Product Name'
@@ -34,6 +35,14 @@ export default function NewProduct() {
                   options={['Clothing', 'Sports Wear']}
                 ></Dropdown>
               </div>
+            </div>
+            <div className='flex justify-center'>
+              <button
+                type='button'
+                className='ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+              >
+                <Link href='/catalog'>Create Product</Link>
+              </button>
             </div>
           </div>
         </div>

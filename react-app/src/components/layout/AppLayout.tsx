@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { Subject } from 'rxjs';
 
-import { NavigationBar } from './NavigationBar';
+import { NavigationSidebar } from './NavigationSidebar';
 
 export interface NavigationItem {
   name: string;
@@ -17,12 +17,12 @@ export interface NavigationItem {
 }
 
 const navigation: NavigationItem[] = [
-  { name: 'Catalog', href: 'catalog', icon: HomeIcon, current: true },
-  { name: 'Engagement', href: '#', icon: UserPlusIcon, current: false },
-  { name: 'Notifications', href: '#', icon: BellIcon, current: false },
+  { name: 'Catalog', href: '/catalog', icon: HomeIcon, current: true },
+  { name: 'Engagement', href: '/#', icon: UserPlusIcon, current: false },
+  { name: 'Notifications', href: '/#', icon: BellIcon, current: false },
   {
     name: 'Settings',
-    href: '#',
+    href: '/#',
     icon: AdjustmentsHorizontalIcon,
     current: false,
   },
@@ -34,10 +34,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div>
-        <NavigationBar
+        <NavigationSidebar
           navigation={navigation}
           toggleSidebar={toggleSidebar}
-        ></NavigationBar>
+        ></NavigationSidebar>
         <div className='flex flex-1 flex-col md:pl-64'>
           <div className='sticky top-0 z-10 bg-gray-100 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden'>
             <button

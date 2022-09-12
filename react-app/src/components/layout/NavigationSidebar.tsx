@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 
 import { NavigationItem } from './AppLayout';
 
-export function NavigationBar({
+export function NavigationSidebar({
   navigation,
   toggleSidebar,
 }: {
@@ -154,21 +154,21 @@ export function NavigationBar({
             </div>
             <nav className='mt-5 flex-1 space-y-1 px-2'>
               {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={`group flex items-center rounded-md px-2 py-2 text-sm font-medium ${
-                    item.current
-                      ? 'bg-indigo-800 text-white'
-                      : 'text-white hover:bg-indigo-600 hover:bg-opacity-75'
-                  }`}
-                >
-                  <item.icon
-                    className='mr-3 h-6 w-6 flex-shrink-0 text-indigo-300'
-                    aria-hidden='true'
-                  />
-                  {item.name}
-                </a>
+                <Link key={item.name} href={item.href}>
+                  <div
+                    className={`group flex items-center rounded-md px-2 py-2 text-sm font-medium ${
+                      item.current
+                        ? 'bg-indigo-800 text-white'
+                        : 'text-white hover:bg-indigo-600 hover:bg-opacity-75'
+                    }`}
+                  >
+                    <item.icon
+                      className='mr-3 h-6 w-6 flex-shrink-0 text-indigo-300'
+                      aria-hidden='true'
+                    />
+                    {item.name}
+                  </div>
+                </Link>
               ))}
             </nav>
           </div>
