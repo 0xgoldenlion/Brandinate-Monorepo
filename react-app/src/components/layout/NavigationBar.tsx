@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { Fragment, useState } from 'react';
 import { Subject } from 'rxjs';
 
@@ -14,13 +14,14 @@ export function NavigationBar({
   toggleSidebar: Subject<void>;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter();
 
   toggleSidebar.subscribe(() => {
     setSidebarOpen(!sidebarOpen);
   });
 
   const goToAccount = () => {
-    Router.push('/account');
+    router.replace('/account');
   };
 
   return (
