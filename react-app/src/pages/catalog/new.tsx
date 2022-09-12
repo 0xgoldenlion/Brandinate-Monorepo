@@ -1,3 +1,4 @@
+import Button from '@/components/buttons/Button';
 import Dropdown from '@/components/form-controls/Dropdown';
 import Input from '@/components/form-controls/Input';
 import AppLayout from '@/components/layout/AppLayout';
@@ -37,12 +38,9 @@ export default function NewProduct() {
               </div>
             </div>
             <div className='flex justify-center'>
-              <button
-                type='button'
-                className='ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-              >
-                <Link href='/catalog'>Create Product</Link>
-              </button>
+              <Link href='/catalog'>
+                <Button>Create Product</Button>
+              </Link>
             </div>
           </div>
         </div>
