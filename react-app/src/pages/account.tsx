@@ -1,3 +1,4 @@
+import Dropdown from '@/components/form-controls/Dropdown';
 import Link from 'next/link';
 
 export default function Account() {
@@ -33,23 +34,10 @@ export default function Account() {
               </div>
 
               <div className='sm:col-span-3'>
-                <label
-                  htmlFor='category'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Category
-                </label>
-                <div className='mt-1'>
-                  <select
-                    name='category'
-                    autoComplete='category-name'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-                  >
-                    <option>Sports wear</option>
-                    <option>Electronics</option>
-                    <option>Clothing</option>
-                  </select>
-                </div>
+                <Dropdown
+                  name={'Category'}
+                  options={['Sports wear', 'Electronics', 'Clothing']}
+                ></Dropdown>
               </div>
 
               <div className='sm:col-span-3'>
@@ -208,7 +196,7 @@ export default function Account() {
                   autoComplete='country-name'
                   className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
                 >
-                  <option>United Nations</option>
+                  <option>United States</option>
                   <option>Germany</option>
                   <option>Portugal</option>
                 </select>

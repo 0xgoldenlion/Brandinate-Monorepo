@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Fragment, useState } from 'react';
 import { Subject } from 'rxjs';
@@ -88,7 +89,7 @@ export function NavigationBar({
                   </div>
                   <nav className='mt-5 space-y-1 px-2'>
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className={`group flex items-center rounded-md px-2 py-2 text-base font-medium ${
@@ -102,7 +103,7 @@ export function NavigationBar({
                           aria-hidden='true'
                         />
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </nav>
                 </div>
