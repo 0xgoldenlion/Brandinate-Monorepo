@@ -1,3 +1,4 @@
+import { ProductsEmptyState } from '@/components/empty-state/products-empty-state';
 import AppLayout from '@/components/layout/AppLayout';
 
 export default function Catalog() {
@@ -10,7 +11,9 @@ export default function Catalog() {
         <div className='mx-auto max-w-7xl px-4 sm:px-6 md:px-8'>
           {/* Replace with your content */}
           <div className='py-4'>
-            <div className='h-96 rounded-lg border-4 border-dashed border-gray-200' />
+            <div className='h-96 rounded-lg border-2 border-solid border-gray-200 flex items-center justify-center' >
+              <ProductsEmptyState></ProductsEmptyState>
+            </div>
           </div>
           {/* /End replace */}
         </div>
