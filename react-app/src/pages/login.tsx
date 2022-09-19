@@ -1,18 +1,30 @@
-import Router from 'next/router';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+
+import { useAuth } from '../lib/auth';
 
 import MetaMaskIcon from '~/svg/MetaMask.svg';
 
 export default function Login() {
   const [userSigner, setUserSigner] = useState();
+  const [state, authenticate] = useAuth();
+
+  const Router = useRouter();
+  const { from } = Router.query;
 
   const connectMetaMask = async () => {
     const accounts = await window.ethereum.request({
       method: 'eth_requestAccounts',
     });
     setUserSigner(accounts[0]);
-    if (userSigner) Router.push('/catalog');
+    const authCeramic = await authenticate();
   };
+
+  useEffect(() => {
+    if (state.status === 'done') {
+      from ? Router.replace(from) : Router.push('/catalog');
+    }
+  }, [state.status]);
 
   return (
     <>

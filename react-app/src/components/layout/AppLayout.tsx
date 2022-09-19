@@ -3,6 +3,7 @@ import {
   Bars3Icon,
   BellIcon,
   HomeIcon,
+  UserIcon,
   UserPlusIcon,
 } from '@heroicons/react/24/outline';
 import { Subject } from 'rxjs';
@@ -18,6 +19,7 @@ export interface NavigationItem {
 
 const navigation: NavigationItem[] = [
   { name: 'Catalog', href: '/catalog', icon: HomeIcon, current: true },
+  { name: 'My Account', href: '/account', icon: UserIcon, current: false },
   { name: 'Engagement', href: '/#', icon: UserPlusIcon, current: false },
   { name: 'Notifications', href: '/#', icon: BellIcon, current: false },
   {
@@ -50,9 +52,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             </button>
           </div>
           <main className='flex-1'>
-            <div className='py-6'>
-              {children}
-            </div>
+            <div className='py-6'>{children}</div>
           </main>
         </div>
       </div>

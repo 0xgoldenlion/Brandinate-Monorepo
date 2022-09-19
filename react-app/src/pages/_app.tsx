@@ -1,8 +1,12 @@
+import { ApolloProvider } from '@apollo/client';
+import { Provider } from 'jotai';
 import { AppProps } from 'next/app';
 
 import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
+
+import { client } from '../lib/graphql';
 
 /**
  * !STARTERCONF info
@@ -10,7 +14,13 @@ import '@/styles/colors.css';
  */
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Provider>
+      <ApolloProvider client={client}>
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </Provider>
+  );
 }
 
 export default MyApp;
