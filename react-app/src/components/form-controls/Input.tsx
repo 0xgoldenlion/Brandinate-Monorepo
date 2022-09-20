@@ -15,7 +15,7 @@ export default function Input({
         htmlFor={formatedName}
         className='block text-sm font-semibold text-gray-700'
       >
-        Price
+        {name}
       </label>
       <div className='mt-1'>
         <input
