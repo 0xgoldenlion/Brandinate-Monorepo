@@ -56,7 +56,7 @@ export default function ProductsList({ products }: { products: Product[] }) {
                         scope='col'
                         className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'
                       >
-                        Gender
+                        GTIN
                       </th>
                       <th
                         scope='col'
@@ -68,18 +68,18 @@ export default function ProductsList({ products }: { products: Product[] }) {
                   </thead>
                   <tbody className='divide-y divide-gray-200 bg-white'>
                     {products.map((product) => (
-                      <tr key={product.price}>
+                      <tr key={product.node.id}>
                         <td className='whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6'>
-                          {product.name}
+                          {product.node.name}
                         </td>
                         <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
-                          {product.category}
+                          {product.node.retailPrize}
                         </td>
                         <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
-                          {product.price}
+                          {product.node.category}
                         </td>
                         <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
-                          {product.gender}
+                          {product.node.gtin}
                         </td>
                         <td className='relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6'>
                           <a

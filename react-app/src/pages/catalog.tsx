@@ -33,15 +33,15 @@ query ProductsList {
 `
 
 export default function Catalog() {
-  const products: Product[] = [
-    { name: 'GoPro', price: '6$', category: 'Camera', gender: 'Unisex' },
-    { name: 'Headband', price: '20$', category: 'Clothing', gender: 'Men' },
-  ];
+  // const products: Product[] = [
+  //   { name: 'GoPro', price: '6$', category: 'Camera', gender: 'Unisex' },
+  //   { name: 'Headband', price: '20$', category: 'Clothing', gender: 'Men' },
+  // ];
 
   const [authState] = useAuth()
 
   const { data } = useQuery(PRODUCTS_LIST_QUERY)
-  const myProducts = data.productIndex.edges.filter((a) => a.node.author.id == data.viewer.id)
+  const products = data.productIndex.edges.filter((a) => a.node.author.id == data.viewer.id)
 
   return (
     <>
