@@ -5,12 +5,43 @@ import { ProductsEmptyState } from '@/components/empty-state/products-empty-stat
 import AppLayout from '@/components/layout/AppLayout';
 import H1 from '@/components/text/H1';
 import Subtitle from '@/components/text/Subtitle';
+import { useAuth } from '@/lib/auth';
+
+import { gql, useQuery } from '@apollo/client'
+
+const PRODUCTS_LIST_QUERY = gql`
+query ProductsList {
+  productIndex(last: 50) {
+    edges {
+      node {
+        id
+        name
+        retailPrize
+        category
+        gtin
+        author
+          {
+            id
+          }
+      }
+    }
+  }
+  viewer{
+    id
+  }
+}
+`
 
 export default function Catalog() {
   const products: Product[] = [
     { name: 'GoPro', price: '6$', category: 'Camera', gender: 'Unisex' },
     { name: 'Headband', price: '20$', category: 'Clothing', gender: 'Men' },
   ];
+
+  const [authState] = useAuth()
+
+  const { data } = useQuery(PRODUCTS_LIST_QUERY)
+  const myProducts = data.productIndex.edges.filter((a) => a.node.author.id == data.viewer.id)
 
   return (
     <>
