@@ -14,19 +14,17 @@ export interface NavigationItem {
   name: string;
   href: string;
   icon: any;
-  current: boolean;
 }
 
 const navigation: NavigationItem[] = [
-  { name: 'Catalog', href: '/catalog', icon: HomeIcon, current: true },
-  { name: 'My Account', href: '/account', icon: UserIcon, current: false },
-  { name: 'Engagement', href: '/#', icon: UserPlusIcon, current: false },
-  { name: 'Notifications', href: '/#', icon: BellIcon, current: false },
+  { name: 'Catalog', href: '/catalog', icon: HomeIcon },
+  { name: 'My Account', href: '/account', icon: UserIcon },
+  { name: 'Engagement', href: '/#', icon: UserPlusIcon },
+  { name: 'Notifications', href: '/#', icon: BellIcon },
   {
     name: 'Settings',
     href: '/#',
     icon: AdjustmentsHorizontalIcon,
-    current: false,
   },
 ];
 
