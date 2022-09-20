@@ -22,7 +22,6 @@ export default function Input({
   }
   
   const formatedName = camelize(name)
-  console.log('formatedName:', formatedName);
 
   return (
     <>

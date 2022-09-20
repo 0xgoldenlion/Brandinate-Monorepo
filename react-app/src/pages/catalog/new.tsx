@@ -8,6 +8,7 @@ import AppLayout from '@/components/layout/AppLayout';
 
 import { gql, useMutation } from '@apollo/client'
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export interface ProductType {
   price: string;
@@ -41,7 +42,7 @@ export default function NewProduct() {
     countriesAvailable: '',
     gtin: '',
     mainImage: '',
-    retailPrice: '',
+    retailPrize: '',
     netContent: '',
     category: '',
     description: '',
@@ -49,25 +50,23 @@ export default function NewProduct() {
     measurableUnit: '',
   }
   const [content, setContent] = useState(initialProduct)
+  const router = useRouter()
   const [createProduct, { loading }] = useMutation(CREATE_PRODUCT_MUTATION, {
     refetchQueries: ['ProductsList'],
   })
 
-  const onSave = () => {
+  const handleCreateProduct = (e) => {
+    e.preventDefault()
+    console.log(content)
     createProduct({ variables: { input: { content } } }).then(
       (res) => {
-        const id = res.data?.createProduct?.document?.id
+        router.push('/catalog')
         // navigate(`/notes/${id}`)
       },
       (err) => {
         alert(err)
       }
     )
-  }
-
-  const handleCreateProduct = (e) => {
-    e.preventDefault()
-    console.log(content)
   }
 
   const handleChange = (e) => {
@@ -94,7 +93,7 @@ export default function NewProduct() {
               </div>
               <div className='col-span-3'>
                 <Input 
-                  name='Retail Price' 
+                  name='Retail Prize' 
                   disabled= { loading }
                   onChange= {handleChange}
                   content={content}
@@ -131,7 +130,7 @@ export default function NewProduct() {
               <div className='col-span-3'>
                 <Dropdown
                   name='Category'
-                  options={['Clothing', 'Sports Wear']}
+                  options={['ELECTRONICS', 'CLOTHES', 'VEHICLES']}
                   disabled={loading}
                   onChange={handleChange}
                   content={content}
