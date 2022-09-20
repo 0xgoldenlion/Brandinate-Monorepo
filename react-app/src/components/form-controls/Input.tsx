@@ -15,7 +15,14 @@ export default function Input({
   content: ProductType;
   placeholder: string;
 }) {
-  const formatedName = name.toLowerCase().replace(' ', '');
+  function camelize(str) {
+    return str.toLowerCase().replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+      return index === 0 ? word.toLowerCase() : word.toUpperCase();
+    }).replace(/\s+/g, '');
+  }
+  
+  const formatedName = camelize(name)
+  console.log('formatedName:', formatedName);
 
   return (
     <>
