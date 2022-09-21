@@ -20,11 +20,12 @@ async function main() {
 
   console.log('Brandinate Address: ', brandinate.address);
 
-  await brandinate.hi();
+  const uri = await brandinate.metadataURI();
+  console.log('URI', uri);
 
-  // const [owner] = await ethers.getSigners();
-  // console.log('Minting NFt to : ', owner.address);
-  // await brandinate.safeMint(owner.address);
+  const [owner] = await ethers.getSigners();
+  console.log('Minting NFt to : ', owner.address);
+  await brandinate.safeMint(owner.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

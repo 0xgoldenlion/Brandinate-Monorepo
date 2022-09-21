@@ -187,4 +187,9 @@ contract Brandinate is ERC721URIStorage, Ownable {
             )
         );
     }
+
+    function metadataURI() public view returns (string memory) {
+        string memory base = _baseURI();
+        return string.concat(base, "SELECT%20*%20FROM%20", _metadataTable);
+    }
 }
