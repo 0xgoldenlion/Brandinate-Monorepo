@@ -4,6 +4,7 @@
 // You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
+const { ethers } = require("hardhat");
 const hre = require("hardhat");
 
 async function main() {
@@ -18,6 +19,13 @@ async function main() {
   await brandinate.deployed();
 
   console.log(brandinate.address);
+
+  const [owner] = await ethers.getSigners();
+  await brandinate.safeMint(owner.address);
+
+  const metaDataUri = await brandinate.metadataURI(owner.address);
+
+  console.log('metaDataUri', metaDataUri);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
