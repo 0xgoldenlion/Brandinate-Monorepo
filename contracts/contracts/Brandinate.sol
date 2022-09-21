@@ -38,7 +38,7 @@ contract Brandinate is ERC721URIStorage, Ownable {
                 _tablePrefix,
                 "_",
                 Strings.toString(block.chainid),
-                " (id int, external_link text, x int, y int);"
+                " (id int, ceramic_link text, ipfs_link text);"
             )
         );
 
@@ -84,7 +84,7 @@ contract Brandinate is ERC721URIStorage, Ownable {
                 _tablePrefix,
                 "_",
                 Strings.toString(block.chainid),
-                " (id int, external_link text, x int, y int);"
+                " (id int, ceramic_link text, ipfs_link text);"
             )
         );
 
@@ -99,32 +99,32 @@ contract Brandinate is ERC721URIStorage, Ownable {
         return _metadataTableId;
     }
 
-    function hi() public {
-        console.log("hi");
-    }
-
     /*
      * safeMint allows anyone to mint a token in this project.
      * Any time a token is minted, a new row of metadata will be
      * dynamically insterted into the metadata table.
      */
-    function safeMint(address to) public returns (uint256) {
-        console.log("hi");
+    function safeMint(
+        address to,
+        string memory ceramic_link,
+        string memory ipfs_link
+    ) public returns (uint256) {
         uint256 newItemId = _tokenIds.current();
-        console.log(_metadataTableId);
-        // _tableland.runSQL(
-        //     address(this),
-        //     _metadataTableId,
-        //     string.concat(
-        //         "INSERT INTO ",
-        //         _metadataTable,
-        //         " (id, external_link, x, y) VALUES (",
-        //         Strings.toString(newItemId),
-        //         ", '",
-        //         _externalURL,
-        //         "', 0, 0)"
-        //     )
-        // );
+        _tableland.runSQL(
+            address(this),
+            _metadataTableId,
+            string.concat(
+                "INSERT INTO ",
+                _metadataTable,
+                " (id, ceramic_link, ipfs_link) VALUES (",
+                Strings.toString(newItemId),
+                ", '",
+                ceramic_link,
+                "', '",
+                ipfs_link,
+                "'"
+            )
+        );
         _safeMint(to, newItemId, "");
         _tokenIds.increment();
         return newItemId;
@@ -160,7 +160,7 @@ contract Brandinate is ERC721URIStorage, Ownable {
         return
             string.concat(
                 base,
-                "SELECT%20json_object(%27id%27,id,%27external_link%27,external_link,%27x%27,x,%27y%27,y)%20as%20meta%20FROM%20",
+                "SELECT%20json_object(%27id%27,id,%27ceramic_link%27,ceramic_link,%27ipfs_link%27,ipfs_link)%20as%20meta%20FROM%20",
                 _metadataTable,
                 "%20WHERE%20id=",
                 Strings.toString(tokenId),

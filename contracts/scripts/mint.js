@@ -7,13 +7,19 @@
 const { ethers } = require("hardhat");
 const hre = require("hardhat");
 
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env.contracts') });
+
 async function main() {
 	const Brandinate = await hre.ethers.getContractFactory("Brandinate");
-	const brandinate = await Brandinate.attach('0xdF2Ba44160BF4d5c9C64391664116CA7CdFc5950');
+	const brandinate = await Brandinate.attach(process.env.BRANDINATE_ADDRESS);
 
 	const [owner] = await ethers.getSigners();
 	console.log('Minting NFt to : ', owner.address);
 	await brandinate.safeMint(owner.address);
+
+	const ownerOf = await brandinate.ownerOf(1);
+	console.log('ownerOf', ownerOf);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
