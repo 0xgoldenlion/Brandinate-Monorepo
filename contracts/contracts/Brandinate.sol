@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@tableland/evm/contracts/ITablelandTables.sol";
+import "hardhat/console.sol";
 
 contract Brandinate is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
@@ -98,63 +99,35 @@ contract Brandinate is ERC721URIStorage, Ownable {
         return _metadataTableId;
     }
 
+    function hi() public {
+        console.log("hi");
+    }
+
     /*
      * safeMint allows anyone to mint a token in this project.
      * Any time a token is minted, a new row of metadata will be
      * dynamically insterted into the metadata table.
      */
     function safeMint(address to) public returns (uint256) {
+        console.log("hi");
         uint256 newItemId = _tokenIds.current();
-        _tableland.runSQL(
-            address(this),
-            _metadataTableId,
-            string.concat(
-                "INSERT INTO ",
-                _metadataTable,
-                " (id, external_link, x, y) VALUES (",
-                Strings.toString(newItemId),
-                ", '",
-                _externalURL,
-                "', 0, 0)"
-            )
-        );
+        console.log(_metadataTableId);
+        // _tableland.runSQL(
+        //     address(this),
+        //     _metadataTableId,
+        //     string.concat(
+        //         "INSERT INTO ",
+        //         _metadataTable,
+        //         " (id, external_link, x, y) VALUES (",
+        //         Strings.toString(newItemId),
+        //         ", '",
+        //         _externalURL,
+        //         "', 0, 0)"
+        //     )
+        // );
         _safeMint(to, newItemId, "");
         _tokenIds.increment();
         return newItemId;
-    }
-
-    /*
-     * makeMove is an example of how to encode gameplay into both the
-     * smart contract and the metadata. Whenever a token owner calls
-     * make move, they can supply a new x,y coordinate and update
-     * their token's metadata.
-     */
-    function makeMove(
-        uint256 tokenId,
-        uint256 x,
-        uint256 y
-    ) public {
-        // check token ownership
-        require(this.ownerOf(tokenId) == msg.sender, "Invalid owner");
-        // simple on-chain gameplay enforcement
-        require(x < 512 && 0 <= x, "Out of bounds");
-        require(y < 512 && 0 <= y, "Out of bounds");
-        // Update the row in tableland
-        _tableland.runSQL(
-            address(this),
-            _metadataTableId,
-            string.concat(
-                "UPDATE ",
-                _metadataTable,
-                " SET x = ",
-                Strings.toString(x),
-                ", y = ",
-                Strings.toString(y),
-                " WHERE id = ",
-                Strings.toString(tokenId),
-                ";"
-            )
-        );
     }
 
     function _baseURI() internal view override returns (string memory) {

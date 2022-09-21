@@ -12,20 +12,19 @@ async function main() {
   const tablelandTables = await TablelandTables.deploy();
   await tablelandTables.deployed();
 
-  console.log(tablelandTables.address);
+  console.log('TablelandTables Address: ', tablelandTables.address);
 
   const Brandinate = await hre.ethers.getContractFactory("Brandinate");
   const brandinate = await Brandinate.deploy(tablelandTables.address);
   await brandinate.deployed();
 
-  console.log(brandinate.address);
+  console.log('Brandinate Address: ', brandinate.address);
 
-  const [owner] = await ethers.getSigners();
-  await brandinate.safeMint(owner.address);
+  await brandinate.hi();
 
-  const metaDataUri = await brandinate.metadataURI(owner.address);
-
-  console.log('metaDataUri', metaDataUri);
+  // const [owner] = await ethers.getSigners();
+  // console.log('Minting NFt to : ', owner.address);
+  // await brandinate.safeMint(owner.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
