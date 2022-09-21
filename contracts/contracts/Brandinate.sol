@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@tableland/evm/contracts/ITablelandTables.sol";
 
-contract CanvasGame is ERC721URIStorage, Ownable {
+contract Brandinate is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
