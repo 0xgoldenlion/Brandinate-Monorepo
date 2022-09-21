@@ -1,7 +1,7 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useAuth } from '@/lib/auth';
 
@@ -114,7 +114,6 @@ export default function Account() {
 
   const handleUpdate = () => {
     const { id, version } = myProfile.node;
-    console.log('content:', content);
     updateProfile({
       variables: { input: { id, content, options: { version } } },
     });
@@ -122,7 +121,6 @@ export default function Account() {
   };
 
   const handleSave = () => {
-    console.log('save');
     createProfile({ variables: { input: { content } } }).then(
       (res) => {
         setMyProfile(res.data?.createProfile?.document);
@@ -136,7 +134,6 @@ export default function Account() {
 
   const onSave = (e) => {
     e.preventDefault();
-    console.log('content:', content);
     myProfile ? handleUpdate() : handleSave();
   };
 
@@ -149,12 +146,12 @@ export default function Account() {
   //   return <h1>Loading profile...</h1>;
   // }
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setContent({ ...content, [name]: value });
   };
 
-  const handleImage = async (e) => {
+  const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, files } = e.target;
     const data = new FormData();
     data.append('file', files[0]);
@@ -168,7 +165,6 @@ export default function Account() {
       profileQuery.data?.profileIndex &&
       profileQuery.data?.viewer
     ) {
-      console.log('profileQuery.data:', profileQuery.data);
       setMyProfile(
         profileQuery.data?.profileIndex.edges.filter(
           (a) => a.node.author.id == profileQuery.data?.viewer.id
@@ -221,19 +217,6 @@ export default function Account() {
                       />
                     </div>
                   </div>
-
-                  {/* <div className='sm:col-span-3'>
-                  <Dropdown
-                    options={['', 'VEHICLES', 'ELECTRONICS', 'CLOTHES']}
-                    disabled={
-                      updateProfileState.loading || createProfileState.loading
-                    }
-                    onChange={(e) => handleChange(e)}
-                    name='category'
-                    value={content.category}
-                  ></Dropdown>
-                </div> */}
-
                   <div className='sm:col-span-3'>
                     <label
                       htmlFor='category'
