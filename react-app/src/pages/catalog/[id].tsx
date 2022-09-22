@@ -1,8 +1,8 @@
 
 import AppLayout from '@/components/layout/AppLayout';
 
-import { gql, useMutation } from '@apollo/client'
-import { useState } from 'react';
+import { gql, useMutation, useQuery } from '@apollo/client'
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ProductForm from '@/components/brand-products/ProductForm';
 
@@ -19,12 +19,35 @@ export interface ProductType {
   measurableUnit: string;
 }
 
-
-const CREATE_PRODUCT_MUTATION = gql`
-  mutation CreateProduct($input: CreateProductInput!) {
-    createProduct(input: $input) {
-      document {
+const PRODUCT_QUERY = gql`
+  query Product($id: ID!) {
+    product: node(id: $id) {
+      ... on Product {
         id
+        version
+        aditionalImages
+        countriesAvailable
+        gtin
+        mainImage
+        retailPrize
+        netContent
+        category
+        description
+        name
+        measurableUnit
+      }
+    }
+  }
+`
+
+
+const UPDATE_PRODUCT_MUTATION = gql`
+  mutation UpdateProduct($input: UpdateProductInput!) {
+    updateProduct(input: $input) {
+      document {
+        __typename
+        id
+        version
       }
     }
   }
@@ -44,14 +67,20 @@ export default function NewProduct() {
     measurableUnit: '',
   }
   const [content, setContent] = useState(initialProduct)
+  const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
-  const [createProduct, { loading }] = useMutation(CREATE_PRODUCT_MUTATION, {
-    refetchQueries: ['ProductsList'],
+  const { id } = router.query
+  const productQuery = useQuery(PRODUCT_QUERY, { variables: { id } })
+  const [updateProduct, { loading }] = useMutation(UPDATE_PRODUCT_MUTATION, {
+    refetchQueries: ['Product'],
   })
 
   const handleMutation = (e) => {
     e.preventDefault()
-    createProduct({ variables: { input: { content } } }).then(
+    const { version } = productQuery.data.product
+    updateProduct({
+      variables: { input: { id, content, options: { version } } },
+    }).then(
       (res) => {
         router.push('/catalog')
       },
@@ -65,11 +94,20 @@ export default function NewProduct() {
     const { name, value } = e.target;
     setContent({...content, [name]: value})
   }
+
+  useEffect(() => {
+    if (productQuery.data && isLoading) {
+      const { id, __typename, version, ...product} = productQuery.data.product
+      setContent(product)
+      setIsLoading(false)
+    }
+  }, [id, productQuery.data])
+  
   
   return (
     <AppLayout>
       <div className='mx-auto w-4/6 p-8 px-4 sm:px-6 md:px-8'>
-        <h1 className='text-2xl font-semibold text-gray-900'>New Product</h1>
+        <h1 className='text-2xl font-semibold text-gray-900'>Update Product</h1>
         <ProductForm 
           handleChange={handleChange}
           handleMutation={handleMutation}

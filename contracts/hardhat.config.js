@@ -17,7 +17,7 @@ module.exports = (function () {
       compilers: [
         // Needed for static code analysis tools to compile OpenZeppelin contracts pegged to 0.8.2
         {
-          version: '0.8.2',
+          version: '0.8.12',
           settings: {
             optimizer: {
               enabled: true,

@@ -6,22 +6,18 @@
 // global scope, and execute the script.
 const { ethers } = require("hardhat");
 const hre = require("hardhat");
-const fs = require('fs');
-require('dotenv').config;
 
 async function main() {
-  const Brandinate = await hre.ethers.getContractFactory("Brandinate");
-  const brandinate = await Brandinate.deploy(process.env.TABLELAND_REGISTRY);
-  await brandinate.deployed();
+	const Brandinate = await hre.ethers.getContractFactory("Brandinate");
+	const brandinate = await Brandinate.attach('0xdF2Ba44160BF4d5c9C64391664116CA7CdFc5950');
 
-  console.log('Brandinate Address: ', brandinate.address);
-  const addresses = `BRANDINATE_ADDRESS=${brandinate.address}`;
-  fs.writeFileSync('.env.contracts', addresses);
+	const tokenURI = await brandinate.tokenURI(1);
+	console.log('tokenURI', tokenURI);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
+	console.error(error);
+	process.exitCode = 1;
 });
