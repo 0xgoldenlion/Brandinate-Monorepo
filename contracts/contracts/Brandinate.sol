@@ -122,7 +122,7 @@ contract Brandinate is ERC721URIStorage, Ownable {
                 ceramic_link,
                 "', '",
                 ipfs_link,
-                "'"
+                "');"
             )
         );
         _safeMint(to, newItemId, "");
