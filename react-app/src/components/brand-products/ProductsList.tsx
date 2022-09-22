@@ -1,5 +1,6 @@
 import { PlusIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Button from '../buttons/Button';
 
@@ -11,6 +12,10 @@ export interface Product {
 }
 
 export default function ProductsList({ products }: { products: Product[] }) {
+  const Router = useRouter()
+  const redirect = (to: string) => {
+    Router.push(`/catalog/${to}`)
+  }
   return (
     <>
       <div className='w-4/6 px-4 sm:px-6 lg:px-8'>
@@ -19,12 +24,12 @@ export default function ProductsList({ products }: { products: Product[] }) {
             <h1 className='text-xl font-semibold text-gray-900'>Products</h1>
           </div>
           <div className='mt-4 sm:mt-0 sm:ml-16 sm:flex-none'>
-            <Link href='/catalog/new'>
+            <div onClick={() => redirect('new')}>
               <Button>
                 <PlusIcon className='-ml-1 mr-2 h-5 w-5' aria-hidden='true' />
                 New Product
               </Button>
-            </Link>
+            </div>
           </div>
         </div>
         <div className='mt-8 flex flex-col'>
@@ -83,8 +88,8 @@ export default function ProductsList({ products }: { products: Product[] }) {
                         </td>
                         <td className='relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6'>
                           <a
-                            href='#'
-                            className='text-indigo-600 hover:text-indigo-900'
+                            onClick={() => redirect(product.node.id)}
+                            className='text-indigo-600 hover:text-indigo-900 cursor-pointer'
                           >
                             Edit
                             <span className='sr-only'>, {product.name}</span>

@@ -107,7 +107,7 @@ const ProductForm = ({handleChange, handleMutation, content, loading}) => {
             <div className='flex justify-center py-4'>
               <Link href='/catalog'>
                 <Button
-                  onClick={(e) => handleCreateProduct(e)}
+                  onClick={(e) => handleMutation(e)}
                   disabled={loading}
                 >Create Product</Button>
               </Link>
