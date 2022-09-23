@@ -7,7 +7,7 @@ type Profile @createModel(accountRelation: SINGLE, description: "User profile in
   headerImage: String @string(maxLength: 59)
   logo: String! @string(maxLength: 59)
   slogan: String @string(maxLength: 400)
-  website: String! @string(maxLength: 100)
+  website: String! @string(maxLength: 200)
   address: String! @string(maxLength: 200)
   city: String! @string(maxLength: 100)
   country: String! @string(maxLength: 100)
@@ -36,7 +36,7 @@ type Product @createModel(accountRelation: LIST, description: "Simple text note"
   gtin: String @string(maxLength: 2000)
   mainImage: String! @string(maxLength: 59)
   retailPrize: String! @string(maxLength: 18)
-  netContent: String @string(maxLength: 20)
+  netContent: String @string(maxLength: 25)
   category: ProductCategory
   description: String! @string(maxLength: 2000)
   name: String! @string(maxLength: 200)

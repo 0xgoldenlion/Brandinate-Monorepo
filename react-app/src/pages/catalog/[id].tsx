@@ -1,23 +1,10 @@
-
+// @ts-nocheck
 import AppLayout from '@/components/layout/AppLayout';
 
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ProductForm from '@/components/brand-products/ProductForm';
-
-export interface ProductType {
-  aditionalImages: string;
-  countriesAvailable: string;
-  gtin: string;
-  mainImage: string;
-  retailPrize: string;
-  netContent: string;
-  category: string;
-  description: string;
-  name: string;
-  measurableUnit: string;
-}
 
 const PRODUCT_QUERY = gql`
   query Product($id: ID!) {

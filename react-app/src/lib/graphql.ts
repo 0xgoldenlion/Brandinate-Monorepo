@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { ApolloClient, ApolloLink, InMemoryCache, Observable } from '@apollo/client'
 import { relayStylePagination } from '@apollo/client/utilities'
 import { ComposeClient } from '@composedb/client'

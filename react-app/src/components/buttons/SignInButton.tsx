@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useState, useEffect} from 'react'
 import { useSignMessage, useConnect } from 'wagmi'
 import { SiweMessage } from 'siwe'

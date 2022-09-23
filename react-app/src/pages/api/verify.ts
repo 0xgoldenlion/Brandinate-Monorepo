@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { withIronSessionApiRoute } from 'iron-session/next'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { SiweMessage } from 'siwe'

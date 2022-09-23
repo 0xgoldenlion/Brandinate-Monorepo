@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { gql, useMutation, useQuery } from '@apollo/client';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -78,6 +80,33 @@ const CREATE_PROFILE_MUTATION = gql`
   }
 `;
 
+interface Content {
+  name: string;
+  address: string;
+  category: string;
+  description: string;
+  headerImage: string;
+  logo: string;
+  slogan: string;
+  website: string;
+  city: string;
+  country: string;
+  email: string;
+  phone: string;
+  postalCode: string;
+}
+
+interface ProfileType extends Content {
+  id: string;
+  version: string;
+  __typename: string;
+  author: string;
+}
+
+interface ProfileRecord {
+  node: ProfileType
+}
+
 export default function Account() {
   const cleanContent = {
     name: '',
@@ -93,6 +122,13 @@ export default function Account() {
     email: '',
     phone: '',
     postalCode: '',
+  }
+  const cleanProfile = {
+    ...cleanContent,
+    id: '',
+    version: '',
+    __typename: '',
+    author: '',
   };
   const [myProfile, setMyProfile] = useState(null);
   const [content, setContent] = useState(cleanContent);
@@ -132,7 +168,7 @@ export default function Account() {
     );
   };
 
-  const onSave = (e) => {
+  const onSave = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     myProfile ? handleUpdate() : handleSave();
   };

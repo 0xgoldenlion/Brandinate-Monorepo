@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 import AppLayout from '@/components/layout/AppLayout';
 
 import { gql, useMutation } from '@apollo/client'
@@ -7,16 +7,17 @@ import { useRouter } from 'next/router';
 import ProductForm from '@/components/brand-products/ProductForm';
 
 export interface ProductType {
-  aditionalImages: string;
-  countriesAvailable: string;
-  gtin: string;
+  aditionalImages?: string;
+  countriesAvailable?: string;
+  gtin?: string;
   mainImage: string;
   retailPrize: string;
-  netContent: string;
-  category: string;
+  netContent?: string;
+  category?: string;
   description: string;
   name: string;
-  measurableUnit: string;
+  measurableUnit?: string;
+  id: string;
 }
 
 
