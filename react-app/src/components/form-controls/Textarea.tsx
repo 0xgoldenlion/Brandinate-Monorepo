@@ -1,18 +1,18 @@
 import React from 'react';
 import { ProductType } from '@/pages/catalog/new';
 
-export default function Dropdown({
+export default function Textarea({
   name,
-  options,
   disabled,
   onChange,
   content,
+  ...props
 }: {
   name: string;
-  options: string[];
-  disabled?: boolean;
+  disabled: boolean;
   onChange: any; //how should be declared?
   content: ProductType;
+  [key: string]: any;
 }) {
   function camelize(str) {
     return str.toLowerCase().replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
@@ -24,25 +24,22 @@ export default function Dropdown({
 
   return (
     <>
-      <label
-        htmlFor={formatedName}
-        className='block text-sm font-medium text-gray-700'
-      >
-        {name}
-      </label>
-      <div className='mt-1'>
-        <select
+      <div className='h-full w-full'>
+        <label
+          className='block text-sm font-semibold text-gray-700'
+          htmlFor={formatedName}
+        >
+          {name}
+        </label>
+        <textarea
+          className='mt-1 !h-full w-full resize-none rounded border-gray-300 text-sm shadow-sm'
           name={formatedName}
           autoComplete={formatedName}
-          className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-          disabled={disabled}
           value={content[formatedName]}
+          disabled={disabled}
           onChange={(e) => onChange(e)}
-        >
-          {options.map((opt, index) => (
-            <option key={index}>{opt}</option>
-          ))}
-        </select>
+          {...(props ?? {})}
+        ></textarea>
       </div>
     </>
   );

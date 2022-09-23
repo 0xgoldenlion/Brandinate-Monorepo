@@ -1,17 +1,22 @@
-import Router from 'next/router';
 import { useState } from 'react';
 
 import MetaMaskIcon from '~/svg/MetaMask.svg';
 
+import { SignInButton } from '@/components/buttons/SignInButton';
+
 export default function Login() {
   const [userSigner, setUserSigner] = useState();
+  const [siweState, setSiweState] = useState<{
+    address?: string
+    error?: Error
+    loading?: boolean
+  }>({})
 
   const connectMetaMask = async () => {
     const accounts = await window.ethereum.request({
       method: 'eth_requestAccounts',
     });
     setUserSigner(accounts[0]);
-    if (userSigner) Router.push('/catalog');
   };
 
   return (
@@ -118,12 +123,17 @@ export default function Login() {
               </div>
 
               <div className='mt-6 grid grid-cols-3 gap-3'>
-                <div onClick={connectMetaMask}>
+                {/* <div onClick={connectMetaMask}> */}
+                <SignInButton
+                  onSuccess={({ address }) => setSiweState((x) => ({ ...x, address }))}
+                  onError={({ error }) => setSiweState((x) => ({ ...x, error }))}
+                >
                   <div className='inline-flex w-full cursor-pointer justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50'>
-                    <span className='sr-only'>Sign in with Facebook</span>
+                    <span className='sr-only'>Sign in with Metamask</span>
                     <MetaMaskIcon className='h-5 w-5' />
                   </div>
-                </div>
+                </SignInButton>
+                {/* </div> */}
 
                 <div>
                   <a

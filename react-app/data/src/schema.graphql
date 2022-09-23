@@ -1,0 +1,44 @@
+type Profile @createModel(accountRelation: SINGLE, description: "User profile info") {
+  author: DID! @documentAccount
+  version: CommitID! @documentVersion
+  name: String! @string(maxLength: 50)
+  category: BrandCategory
+  description: String! @string(maxLength: 1000)
+  headerImage: String @string(maxLength: 59)
+  logo: String! @string(maxLength: 59)
+  slogan: String @string(maxLength: 400)
+  website: String! @string(maxLength: 100)
+  address: String! @string(maxLength: 200)
+  city: String! @string(maxLength: 100)
+  country: String! @string(maxLength: 100)
+  email: String! @string(maxLength: 100)
+  phone: String! @string(maxLength: 12)
+  postalCode: String! @string(maxLength: 10)
+}
+
+enum BrandCategory {
+  ELECTRONICS
+  CLOTHES
+  VEHICLES
+}
+
+enum ProductCategory {
+  ELECTRONICS
+  CLOTHES
+  VEHICLES
+}
+
+type Product @createModel(accountRelation: LIST, description: "Simple text note") {
+  author: DID! @documentAccount
+  version: CommitID! @documentVersion
+  aditionalImages: String @string(maxLength: 59)
+  countriesAvailable: String! @string(maxLength: 1500)
+  gtin: String @string(maxLength: 2000)
+  mainImage: String! @string(maxLength: 59)
+  retailPrize: String! @string(maxLength: 18)
+  netContent: String @string(maxLength: 20)
+  category: ProductCategory
+  description: String! @string(maxLength: 2000)
+  name: String! @string(maxLength: 200)
+  measurableUnit: String! @string(maxLength: 10)
+}
