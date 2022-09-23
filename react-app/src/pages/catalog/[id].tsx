@@ -75,7 +75,7 @@ export default function NewProduct() {
     refetchQueries: ['Product'],
   })
 
-  const handleMutation = (e) => {
+  const handleMutation = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
     const { version } = productQuery.data.product
     updateProduct({
@@ -90,7 +90,7 @@ export default function NewProduct() {
     )
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>) => {
     const { name, value } = e.target;
     setContent({...content, [name]: value})
   }
