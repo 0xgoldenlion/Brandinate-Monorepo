@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logoImg from "images/Logo.svg";
 import logoLightImg from "images/logo-light.svg";
+import Logeo from "images/Icons/Logo.png";
 
 export interface LogoProps {
   img?: string;
@@ -10,8 +11,8 @@ export interface LogoProps {
 }
 
 const Logo: React.FC<LogoProps> = ({
-  img = logoImg,
-  imgLight = logoLightImg,
+  img = Logeo,
+  imgLight = Logeo,
   className = "flex-shrink-0",
 }) => {
   return (
@@ -23,9 +24,8 @@ const Logo: React.FC<LogoProps> = ({
       {/* PLEASE UN COMMENT BELLOW CODE AND USE IT */}
       {img ? (
         <img
-          className={`block max-h-8 sm:max-h-10 ${
-            imgLight ? "dark:hidden" : ""
-          }`}
+          className={`block max-h-8 sm:max-h-10 ${imgLight ? "dark:hidden" : ""
+            }`}
           src={img}
           alt="Logo"
         />

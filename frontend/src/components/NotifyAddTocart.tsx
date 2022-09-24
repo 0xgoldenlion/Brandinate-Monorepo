@@ -1,5 +1,5 @@
 import { Transition } from "@headlessui/react";
-import Prices from "components/Prices";
+import Prices from "components/Objects/Prices";
 import { PRODUCTS } from "data/data";
 import React, { FC } from "react";
 

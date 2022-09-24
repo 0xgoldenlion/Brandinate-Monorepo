@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import NcImage from "shared/NcImage/NcImage";
 import LikeButton from "../../components/LikeButton";
-import Prices from "../../components/Prices";
+import Prices from "../../components/Objects/Prices";
 //
 import { ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
 import BagIcon from "../../components/BagIcon";
