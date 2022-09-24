@@ -18,11 +18,21 @@ contract Brandinate is ERC721URIStorage, Ownable {
     string private _tablePrefix = "brandinate";
     string private _externalURL;
 
+    mapping(address => uint256[]) public userToTokens;
+
+    function getUserToTokenArray(address _owner)
+        external
+        view
+        returns (uint256[] memory)
+    {
+        return userToTokens[_owner];
+    }
+
     // Our will be pulled from the network
     string private _baseURIString =
         "https://testnet.tableland.network/query?s=";
 
-    constructor(address registry) ERC721("Pixel", "ITM") {
+    constructor(address registry) ERC721("Brandinate", "BDN") {
         /*
          * The Tableland address on your current chain
          */
@@ -126,6 +136,7 @@ contract Brandinate is ERC721URIStorage, Ownable {
             )
         );
         _safeMint(to, newItemId, "");
+        userToTokens[msg.sender].push(newItemId);
         _tokenIds.increment();
         return newItemId;
     }
