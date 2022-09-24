@@ -14,8 +14,7 @@
     "test": "jest",
     "format": "prettier -w .",
     "format:check": "prettier -c .",
-    "postbuild": "next-sitemap --config next-sitemap.config.js",
-    "prepare": "husky install"
+    "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
@@ -26,6 +25,7 @@
     "axios": "^0.27.2",
     "clsx": "^1.2.1",
     "did-session": "^0.1.1",
+    "graphql": "^16.6.0",
     "iron-session": "^6.2.1",
     "jotai": "^1.8.3",
     "key-did-provider-ed25519": "^2.0.1",
@@ -42,6 +42,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.3.0",
     "@commitlint/config-conventional": "^16.2.4",
+    "@composedb/devtools-node": "^0.2.2",
     "@svgr/webpack": "^6.3.1",
     "@tailwindcss/forms": "^0.5.3",
     "@testing-library/jest-dom": "^5.16.5",
@@ -63,8 +64,7 @@
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "tailwindcss": "^3.1.8",
-    "typescript": "^4.8.2",
-    "web3.storage": "^4.3.0"
+    "typescript": "^4.8.2"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [

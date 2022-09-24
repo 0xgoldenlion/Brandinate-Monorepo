@@ -1,4 +1,3 @@
-
 import AppLayout from '@/components/layout/AppLayout';
 
 import { gql, useMutation } from '@apollo/client'
@@ -7,16 +6,17 @@ import { useRouter } from 'next/router';
 import ProductForm from '@/components/brand-products/ProductForm';
 
 export interface ProductType {
-  aditionalImages: string;
-  countriesAvailable: string;
-  gtin: string;
+  aditionalImages?: string;
+  countriesAvailable?: string;
+  gtin?: string;
   mainImage: string;
   retailPrize: string;
-  netContent: string;
-  category: string;
+  netContent?: string;
+  category?: string;
   description: string;
   name: string;
-  measurableUnit: string;
+  measurableUnit?: string;
+  id: string;
 }
 
 
@@ -49,7 +49,7 @@ export default function NewProduct() {
     refetchQueries: ['ProductsList'],
   })
 
-  const handleMutation = (e) => {
+  const handleMutation = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
     createProduct({ variables: { input: { content } } }).then(
       (res) => {
@@ -61,7 +61,7 @@ export default function NewProduct() {
     )
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>) => {
     const { name, value } = e.target;
     setContent({...content, [name]: value})
   }
@@ -73,6 +73,7 @@ export default function NewProduct() {
         <ProductForm 
           handleChange={handleChange}
           handleMutation={handleMutation}
+// @ts-ignore
           content={content}
           loading={loading}
         />

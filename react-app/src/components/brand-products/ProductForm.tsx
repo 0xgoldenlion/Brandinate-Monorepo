@@ -5,7 +5,19 @@ import Dropdown from '@/components/form-controls/Dropdown';
 import Input from '@/components/form-controls/Input';
 import Textarea from '@/components/form-controls/Textarea';
 
-const ProductForm = ({handleChange, handleMutation, content, loading}) => {
+import { ProductType } from '@/pages/catalog/new';
+
+const ProductForm = ({
+  handleChange, 
+  handleMutation, 
+  content, 
+  loading
+}: {
+  handleChange: (input: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>) => void; 
+  handleMutation: (input: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void; 
+  content:ProductType, 
+  loading: boolean
+}) => {
   return (
     <div className='py-4'>
           <div className='flex flex-col justify-between rounded-lg border-2 border-solid border-gray-200 py-4'>

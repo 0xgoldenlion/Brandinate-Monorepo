@@ -4,14 +4,13 @@ import { useRouter } from 'next/router';
 
 import Button from '../buttons/Button';
 
-export interface Product {
-  name: string;
-  price: string;
-  gender: string;
-  category: string;
+import { ProductType } from '@/pages/catalog/new'
+
+interface ProductRecord {
+  node: ProductType
 }
 
-export default function ProductsList({ products }: { products: Product[] }) {
+export default function ProductsList({ products }: { products: ProductRecord[] }) {
   const Router = useRouter()
   const redirect = (to: string) => {
     Router.push(`/catalog/${to}`)
@@ -92,7 +91,7 @@ export default function ProductsList({ products }: { products: Product[] }) {
                             className='text-indigo-600 hover:text-indigo-900 cursor-pointer'
                           >
                             Edit
-                            <span className='sr-only'>, {product.name}</span>
+                            <span className='sr-only'>, {product.node.name}</span>
                           </a>
                         </td>
                       </tr>

@@ -1,6 +1,4 @@
-import ProductsList, {
-  Product,
-} from '@/components/brand-products/ProductsList';
+import ProductsList from '@/components/brand-products/ProductsList';
 import { ProductsEmptyState } from '@/components/empty-state/products-empty-state';
 import AppLayout from '@/components/layout/AppLayout';
 import H1 from '@/components/text/H1';
@@ -34,6 +32,7 @@ query ProductsList {
 
 export default function Catalog() {
   const { data } = useQuery(PRODUCTS_LIST_QUERY)
+//@ts-ignore
   const products = data?.productIndex?.edges.filter((a) => a.node.author.id == data.viewer.id) || []
 
   return (

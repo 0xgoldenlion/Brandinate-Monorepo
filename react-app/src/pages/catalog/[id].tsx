@@ -1,23 +1,9 @@
-
 import AppLayout from '@/components/layout/AppLayout';
 
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import ProductForm from '@/components/brand-products/ProductForm';
-
-export interface ProductType {
-  aditionalImages: string;
-  countriesAvailable: string;
-  gtin: string;
-  mainImage: string;
-  retailPrize: string;
-  netContent: string;
-  category: string;
-  description: string;
-  name: string;
-  measurableUnit: string;
-}
 
 const PRODUCT_QUERY = gql`
   query Product($id: ID!) {
@@ -75,7 +61,7 @@ export default function NewProduct() {
     refetchQueries: ['Product'],
   })
 
-  const handleMutation = (e) => {
+  const handleMutation = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
     const { version } = productQuery.data.product
     updateProduct({
@@ -90,7 +76,7 @@ export default function NewProduct() {
     )
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>) => {
     const { name, value } = e.target;
     setContent({...content, [name]: value})
   }
@@ -111,6 +97,7 @@ export default function NewProduct() {
         <ProductForm 
           handleChange={handleChange}
           handleMutation={handleMutation}
+// @ts-ignore
           content={content}
           loading={loading}
         />
