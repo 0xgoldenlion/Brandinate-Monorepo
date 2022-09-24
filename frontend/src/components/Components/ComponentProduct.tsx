@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { PRODUCTS } from "data/data";
 //
 import Prices from "components/Objects/Prices";
@@ -12,6 +12,8 @@ import BackgroundSection from "pages/ProductPage/BackgroundSection";
 import ProductMain from "images/Product/ProductMain.png";
 import ProductLeft from "images/Product/ProductLeft.png";
 import ProductRight from "images/Product/ProductRight.png";
+
+import { ethers } from "ethers";
 
 export interface ComponentProductProps {
   className?: string;
@@ -58,6 +60,12 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
           >
             <span className="ml-3">Mint</span>
           </ButtonPrimary>
+          <ButtonPrimary
+            className="flex-1 flex-shrink-0"
+          >
+            <span className="ml-3" onClick={() => walletConnect()}>Connect Wallet</span>
+          </ButtonPrimary>
+          <div>{signer}</div>
         </div>
 
         {/*  */}
@@ -93,6 +101,17 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
       </div>
     );
   };
+
+  const [signer, setSigner] = useState('')
+
+  const walletConnect = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+    // Prompt user for account connections
+    await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+    setSigner(await signer.getAddress())
+    console.log("Account:", await signer.getAddress());
+  }
 
   return (
     <div className={`nc-ComponentProduct ${className}`}>
