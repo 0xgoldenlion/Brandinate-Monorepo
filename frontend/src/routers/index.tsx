@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Page } from "./types";
 import BlogSingle from "pages/AboutPage/About";
-import Footer from "shared/Footer/Footer";
+import Footer from "components/Footer/Footer";
 import Page404 from "pages/404Page/Page404";
 import PageHome2 from "pages/LandingPage/LandingPage";
 import Header from "components/Header/Header";
