@@ -48,7 +48,7 @@ const ComponentHero: FC<ComponentHeroProps> = ({ className = "" }) => {
       </div>
 
       {/* BG */}
-      <div className="absolute inset-0 bg-[#F7F0EA] rounded-2xl overflow-hidden z-0">
+      <div className="absolute inset-0 bg-slate-100/80 rounded-2xl overflow-hidden z-0">
         <img
           className="absolute w-full h-full object-contain"
           src={backgroundLineSvg}

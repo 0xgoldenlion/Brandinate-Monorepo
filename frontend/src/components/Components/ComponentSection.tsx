@@ -12,7 +12,7 @@ export interface ComponentSectionProps {
 const ComponentSection: FC<ComponentSectionProps> = ({ className = "lg:pt-10" }) => {
   return (
     <div className={`nc-ComponentSection ${className}`}>
-      <div className="relative flex flex-col lg:flex-row lg:justify-end bg-[#f3f6f6] rounded-2xl sm:rounded-[40px] p-4 pb-0 sm:p-5 sm:pb-0 lg:p-24">
+      <div className="relative flex flex-col lg:flex-row lg:justify-end bg-slate-100/80 rounded-2xl sm:rounded-[40px] p-4 pb-0 sm:p-5 sm:pb-0 lg:p-24">
         <div className="lg:w-[45%] max-w-lg relative">
           <h2 className="font-semibold text-3xl sm:text-4xl xl:text-5xl 2xl:text-6xl mt-6 sm:mt-10 !leading-[1.13] tracking-tight">
             Case Study: GoPro

@@ -1,7 +1,15 @@
-<svg width="1440" height="600" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="1203.5" cy="107.5" r="12.5" fill="#43B97F"/>
-<circle cx="302.5" cy="516.5" r="10.5" fill="#43B97F"/>
-<circle cx="124.5" cy="484.5" r="10.5" fill="#FF6650"/>
-<circle cx="1351.5" cy="494.5" r="10.5" fill="#FFB951"/>
-<circle cx="674.5" cy="93.5" r="17.5" fill="#C280D2"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1440 600" style="enable-background:new 0 0 1440 600;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#9AF3FF;}
+	.st1{fill:#FF81AF;}
+	.st2{fill:#FFE483;}
+	.st3{fill:#9E59FF;}
+</style>
+<circle class="st0" cx="302.5" cy="516.5" r="10.5"/>
+<circle class="st1" cx="124.5" cy="484.5" r="10.5"/>
+<circle class="st2" cx="1351.5" cy="494.5" r="10.5"/>
+<circle class="st3" cx="674.5" cy="93.5" r="17.5"/>
 </svg>
