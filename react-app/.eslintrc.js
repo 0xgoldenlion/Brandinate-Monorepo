@@ -20,6 +20,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function':'off',
     'no-async-promise-executor':'off',
     '@typescript-eslint/ban-ts-comment':'off',
+    'react/no-unescaped-entities':'off',
 
     'react/display-name': 'off',
     'react/jsx-curly-brace-presence': [

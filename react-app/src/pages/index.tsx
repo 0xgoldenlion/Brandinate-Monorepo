@@ -9,7 +9,7 @@ export default function HomePage() {
   }
   useEffect(() => {
     redirect()
-  }, [])
+  }, [redirect])
   
   return (
     <div onClick={redirect} className='cursor-pointer m-3'>If you're not redirected please click here</div>
