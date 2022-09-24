@@ -19,6 +19,7 @@ module.exports = {
     //ADD TO BEING ABLE TO DEPLOY TO VERCEL
     '@typescript-eslint/no-empty-function':'off',
     'no-async-promise-executor':'off',
+    '@typescript-eslint/ban-ts-comment':'off',
 
     'react/display-name': 'off',
     'react/jsx-curly-brace-presence': [
