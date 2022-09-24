@@ -42,7 +42,6 @@ const HeaderNavigation: FC<MainNav2Props> = ({ className = "" }) => {
             )}
           </div>
           <div className="flex-1 flex items-center justify-end ">
-            <HeaderSwitch />
             <HeaderWallet />
             {/* <MenuBar /> */}
           </div>
