@@ -42,6 +42,7 @@ const wagmiClient = createClient({
 })
 
 import { client } from '../lib/graphql';
+import Seo from '@/components/Seo';
 
 /**
  * !STARTERCONF info
@@ -53,6 +54,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider>
       <ApolloProvider client={client}>
         <WagmiConfig client={wagmiClient}>
+          {/* <Seo templateTitle='Home' /> */}
+          <Seo />
           <Component {...pageProps} />
         </WagmiConfig>
       </ApolloProvider>
