@@ -16,6 +16,8 @@ import ProductRight from "images/Product/ProductRight.png";
 import { ethers } from "ethers";
 
 import BrandinateABI from '../../BrandinateABI.json'
+import axios from 'axios'
+import { LENS_DOES_FOLLOW_QUERY } from '../../LENS_DOES_FOLLOW_QUERY'
 
 export interface ComponentProductProps {
   className?: string;
@@ -66,6 +68,12 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
             className="flex-1 flex-shrink-0"
           >
             <span className="ml-3" onClick={() => walletConnect()}>Connect Wallet</span>
+          </ButtonPrimary>
+
+          <ButtonPrimary
+            className="flex-1 flex-shrink-0"
+          >
+            <span className="ml-3" onClick={() => updateProductMetadata()}>Check If Follows Lens</span>
           </ButtonPrimary>
           <div>{signer}</div>
         </div>
@@ -121,7 +129,7 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
       const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
       const signer = provider.getSigner();
       const address = await signer.getAddress()
-      const contract = new ethers.Contract("0x1b924ebdADcb0aa5eFAd5ADf533d5697AF99e11b", BrandinateABI.abi, signer);
+      const contract = new ethers.Contract("0x0a0954902374F4cDA53f6696e78776AFA337572F", BrandinateABI.abi, signer);
       setLoading(true)
       const txnResponse = await contract.safeMint(address, "kjzl6kcym7w8y5xorh6sr9dvc7ll9rkyobnnh7573687knvjnz6boullyr3res5", "bafybeiar6miyaobqnyfrxjwbc3s7uenanmttjcqo2dg55533s6ftsuh4fu")
       console.log(txnResponse)
@@ -130,6 +138,40 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
       setLoading(false)
     } catch (error) {
       setLoading(false)
+      console.log(error)
+    }
+  }
+
+  const [doesFollow, setDoesFollow] = useState(false)
+
+  const updateProductMetadata = async () => {
+    try {
+      const result = await axios
+        .post(
+          'https://api-sandbox-mumbai.lens.dev/',
+          {
+            query: LENS_DOES_FOLLOW_QUERY,
+            variables: { address: signer },
+          }
+        );
+      console.log()
+
+      const doesFollow = result.data.data.doesFollow[0].follows
+      if (doesFollow) {
+        setDoesFollow(true)
+        const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+        const signer = provider.getSigner();
+        const address = await signer.getAddress()
+        const contract = new ethers.Contract("0x0a0954902374F4cDA53f6696e78776AFA337572F", BrandinateABI.abi, signer);
+        setLoading(true)
+        const txnResponse = await contract.safeMint(address, "kjzl6kcym7w8y5xorh6sr9dvc7ll9rkyobnnh7573687knvjnz6boullyr3res5", "bafybeiar6miyaobqnyfrxjwbc3s7uenanmttjcqo2dg55533s6ftsuh4fu")
+        console.log(txnResponse)
+        const txnReceipt = await txnResponse.wait();
+        console.log(txnReceipt)
+      } else {
+        setDoesFollow(false)
+      }
+    } catch (error) {
       console.log(error)
     }
   }
