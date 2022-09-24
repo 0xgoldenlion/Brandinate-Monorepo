@@ -1,9 +1,10 @@
 import { FC } from "react";
 //
 import NcImage from "shared/NcImage/NcImage";
-import rightImgDemo from "images/promo2.png";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
 import Logo from "shared/Logo/Logo";
+//
+import SectionGraphic from "images/Graphics/SectionGraphic.svg";
 
 export interface ComponentSectionProps {
   className?: string;
@@ -33,7 +34,7 @@ const ComponentSection: FC<ComponentSectionProps> = ({ className = "lg:pt-10" })
 
         <NcImage
           containerClassName="relative block lg:absolute lg:left-0 lg:bottom-0 mt-10 lg:mt-0 max-w-xl lg:max-w-[calc(55%-40px)]"
-          src={rightImgDemo}
+          src={SectionGraphic}
         />
       </div>
     </div>

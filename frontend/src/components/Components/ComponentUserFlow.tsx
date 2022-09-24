@@ -3,6 +3,12 @@ import NcImage from "shared/NcImage/NcImage";
 import Gradient from "images/Gradient.png"
 import VectorImg from "images/VectorHIW.svg";
 import Badge from "shared/Badge/Badge";
+//
+import Error from "images/Graphics/Error.svg"; 
+import Step1Graphic from "images/Graphics/Step1Graphic.svg";
+import Step2Graphic from "images/Graphics/Step2Graphic.svg";
+import Step3Graphic from "images/Graphics/Step3Graphic.svg";
+import Step4Graphic from "images/Graphics/Step4Graphic.svg";
 
 export interface ComponentUserFlowProps {
   className?: string;
@@ -12,28 +18,28 @@ export interface ComponentUserFlowProps {
 const DEMO_DATA = [
   {
     id: 1,
-    img: Gradient,
+    img: Step1Graphic,
     imgDark: Gradient,
     title: "Upload a Product",
     desc: "Smart filtering and suggestions make it easy to find",
   },
   {
     id: 2,
-    img: Gradient,
+    img: Step2Graphic,
     imgDark: Gradient,
     title: "Add to bag",
     desc: "Easily select the correct items and add them to the cart",
   },
   {
     id: 3,
-    img: Gradient,
+    img: Step3Graphic,
     imgDark: Gradient,
     title: "Mint a Product Token",
     desc: "The carrier will confirm and ship quickly to you",
   },
   {
     id: 4,
-    img: Gradient,
+    img: Step4Graphic,
     imgDark: Gradient,
     title: "Enjoy the product",
     desc: "Have fun and enjoy your 5-star quality products",

@@ -74,17 +74,19 @@ export default function HeaderWallet() {
                 <div className="bg-neutral-50 dark:bg-slate-900 p-5">
                   <div className="flex space-x-2 mt-5">
                     <a href='https://demo.brandinate.com/login'>
-                      <ButtonSecondary
+                      <ButtonPrimary
                         className="flex-1 border border-slate-200 dark:border-slate-700"
                       >
                         Brand Portal
-                      </ButtonSecondary>
+                      </ButtonPrimary>
                     </a>
-                    <ButtonPrimary
-                      className="flex-1"
-                    >
-                      User Collection
-                    </ButtonPrimary>
+                    <a href='https://user.brandinate.com/login'>
+                      <ButtonPrimary
+                        className="flex-1"
+                      >
+                        User Collection
+                      </ButtonPrimary>
+                    </a>
                   </div>
                 </div>
               </div>

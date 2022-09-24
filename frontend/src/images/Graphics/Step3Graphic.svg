@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="268px" height="292px" viewBox="0 0 268 292" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/shopping bag</title>
+    <g id="Icons/shopping-bag" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="shopping-bag" stroke-width="1.5">
+            <path d="M17.59,102.46 L20.32,72.55 C20.852433,66.7226771 25.7384041,62.26 31.59,62.26 L198.67,62.26 L173.78,291.170001 L4.62,291.170001 C3.54195665,291.170001 2.51274547,290.720522 1.78145108,289.928444 C1.05015669,289.136367 0.683421151,288.074561 0.77,287 L16.41,115.41" id="bag_red_part" stroke="#0D052C" fill="#FF5986" fill-rule="nonzero"></path>
+            <path d="M94.54,62.26 L94.54,44.9 C94.54,20.5166283 114.306628,0.75 138.69,0.75 L138.69,0.75 C163.073372,0.75 182.84,20.5166283 182.84,44.9 L182.84,62.26" id="holder" stroke="#0D052C" fill-rule="nonzero"></path>
+            <g id="holes_in_bag" transform="translate(55.000000, 80.000000)" fill="#FF81AF" fill-rule="nonzero" stroke="#0D052C">
+                <circle id="Oval" cx="6.39" cy="6.05" r="5.95"></circle>
+                <circle id="Oval" cx="94.7" cy="6.05" r="5.95"></circle>
+            </g>
+            <path d="M61.39,85.62 L61.39,44.9 C61.39,20.5166283 81.1566283,0.75 105.54,0.75 L105.54,0.75 C129.92499,0.75 149.694478,20.5150108 149.7,44.9 L149.7,86.05" id="holder-2" stroke="#0D052C" fill-rule="nonzero"></path>
+            <g id="line" transform="translate(110.000000, 230.000000)" fill-rule="nonzero" stroke="#0D052C">
+                <line x1="0.81" y1="9.13" x2="8.3" y2="22.59" id="Path"></line>
+                <line x1="6.4" y1="0.29" x2="19.12" y2="23.15" id="Path"></line>
+                <line x1="18.7" y1="3.51" x2="22.89" y2="11.05" id="Path"></line>
+            </g>
+            <ellipse id="badge" stroke="#0D052C" fill="#FFFEAA" fill-rule="nonzero" cx="99.71" cy="120.61" rx="21.88" ry="12.75"></ellipse>
+            <g id="side_of_the_bag" transform="translate(173.000000, 62.000000)">
+                <g id="side_of_the_bag-2" fill-rule="nonzero" stroke="#0D052C">
+                    <path d="M93.21,228.09 C92.5119232,228.78676 91.5662982,229.178673 90.58,229.18 L0.78,229.18 L48.14,195.45 L93.21,228.09 Z" id="Path" fill="#87D4FF"></path>
+                    <polygon id="Path" fill="#1D1E5F" points="48.14 0.27 48.14 195.45 0.78 229.18 25.66 0.27"></polygon>
+                    <path d="M94.27,225.08 C94.3866282,226.188621 93.9972138,227.290737 93.21,228.08 L48.14,195.44 L48.14,0.27 L61.56,0.27 C66.70412,0.27 71.0179758,4.15451524 71.56,9.27 L94.27,225.08 Z" id="Path" fill="#7774FF"></path>
+                </g>
+                <g id="glare_line" transform="translate(37.000000, 125.000000)" stroke="#FFFFFF">
+                    <line x1="1.48" y1="30.77" x2="1.48" y2="43.29" id="Path"></line>
+                    <line x1="1.48" y1="0.25" x2="1.48" y2="20.11" id="Path"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
