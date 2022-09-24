@@ -90,8 +90,8 @@ contract Brandinate is ERC721URIStorage, Ownable {
                 ceramic_link,
                 "', '",
                 ipfs_link,
-                "', '0",
-                "');"
+                "', 0",
+                ");"
             )
         );
         _safeMint(to, newItemId, "");
@@ -106,30 +106,32 @@ contract Brandinate is ERC721URIStorage, Ownable {
                 "INSERT INTO ",
                 _metadataTable,
                 " (id, ceramic_link, ipfs_link, followsLensProfile) VALUES (",
-                "newItemId",
+                "Strings.toString(newItemId)",
                 ", '",
                 "ceramic_link",
                 "', '",
                 "ipfs_link",
-                "', '0",
-                "');"
+                "', 0",
+                ");"
             );
     }
 
-    function getUpdateStatement() public view returns (string memory) {
-        return
-            string.concat(
-                "INSERT INTO ",
-                _metadataTable,
-                " (id, ceramic_link, ipfs_link, followsLensProfile) VALUES (",
-                "newItemId",
-                ", '",
-                "ceramic_link",
-                "', '",
-                "ipfs_link",
-                "', '0",
-                "');"
-            );
+    function updateTablelandMetadata(uint256 tokenId)
+        public
+        returns (string memory)
+    {
+        string memory base = _baseURI();
+
+        string memory updateStatement = string.concat(
+            "update%20",
+            _metadataTable,
+            "%20set%20followsLensProfile=1"
+            "%20WHERE%20id=",
+            Strings.toString(tokenId),
+            ";"
+        );
+
+        _tableland.runSQL(address(this), _metadataTableId, updateStatement);
     }
 
     function _baseURI() internal view override returns (string memory) {
