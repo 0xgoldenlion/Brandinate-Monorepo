@@ -11,13 +11,13 @@ import {
   SparklesIcon,
 } from "@heroicons/react/24/outline";
 import IconDiscount from "components/IconDiscount";
-import Prices from "components/Prices";
+import Prices from "components/Objects/Prices";
 import toast from "react-hot-toast";
 import detail1JPG from "images/products/detail1.jpg";
 import detail2JPG from "images/products/detail2.jpg";
 import detail3JPG from "images/products/detail3.jpg";
 import NotifyAddTocart from "./NotifyAddTocart";
-import AccordionInfo from "pages/ProductPage/ProductInformation";
+import AccordionInfo from "components/Objects/ProductInformation";
 import { Link } from "react-router-dom";
 
 export interface ProductQuickViewProps {

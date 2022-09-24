@@ -1,4 +1,4 @@
-import { TechStack } from "components/DiscoverMoreSlider";
+import { TechStack } from "components/Components/ComponentSlider";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import NcImage from "shared/NcImage/NcImage";
