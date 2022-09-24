@@ -117,16 +117,21 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
   }
 
   const mintNft = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-    const signer = provider.getSigner();
-    const address = await signer.getAddress()
-    const contract = new ethers.Contract("0x1b924ebdADcb0aa5eFAd5ADf533d5697AF99e11b", BrandinateABI.abi, signer);
-    const txnResponse = await contract.safeMint(address, "kjzl6kcym7w8y5xorh6sr9dvc7ll9rkyobnnh7573687knvjnz6boullyr3res5", "bafybeiar6miyaobqnyfrxjwbc3s7uenanmttjcqo2dg55533s6ftsuh4fu")
-    console.log(txnResponse)
-    setLoading(true)
-    const txnReceipt = await txnResponse.wait();
-    console.log(txnReceipt)
-    setLoading(false)
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+      const signer = provider.getSigner();
+      const address = await signer.getAddress()
+      const contract = new ethers.Contract("0x1b924ebdADcb0aa5eFAd5ADf533d5697AF99e11b", BrandinateABI.abi, signer);
+      setLoading(true)
+      const txnResponse = await contract.safeMint(address, "kjzl6kcym7w8y5xorh6sr9dvc7ll9rkyobnnh7573687knvjnz6boullyr3res5", "bafybeiar6miyaobqnyfrxjwbc3s7uenanmttjcqo2dg55533s6ftsuh4fu")
+      console.log(txnResponse)
+      const txnReceipt = await txnResponse.wait();
+      console.log(txnReceipt)
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      console.log(error)
+    }
   }
 
   return (
