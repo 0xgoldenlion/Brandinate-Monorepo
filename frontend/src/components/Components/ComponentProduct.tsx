@@ -15,6 +15,8 @@ import ProductRight from "images/Product/ProductRight.png";
 
 import { ethers } from "ethers";
 
+import BrandinateABI from '../../BrandinateABI.json'
+
 export interface ComponentProductProps {
   className?: string;
 }
@@ -58,7 +60,7 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
           <ButtonPrimary
             className="flex-1 flex-shrink-0"
           >
-            <span className="ml-3">Mint</span>
+            <span className="ml-3" onClick={() => mintNft()}>Mint</span>
           </ButtonPrimary>
           <ButtonPrimary
             className="flex-1 flex-shrink-0"
@@ -111,6 +113,19 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
     const signer = provider.getSigner();
     setSigner(await signer.getAddress())
     console.log("Account:", await signer.getAddress());
+  }
+
+  const mintNft = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+    const signer = provider.getSigner();
+    const address = await signer.getAddress()
+    const contract = new ethers.Contract("0x1b924ebdADcb0aa5eFAd5ADf533d5697AF99e11b", BrandinateABI.abi, signer);
+    const txnResponse = await contract.safeMint(address, "kjzl6kcym7w8y5xorh6sr9dvc7ll9rkyobnnh7573687knvjnz6boullyr3res5", "bafybeiar6miyaobqnyfrxjwbc3s7uenanmttjcqo2dg55533s6ftsuh4fu")
+    console.log(txnResponse)
+    // show a loader here until the txnReceipt comes back (this is when the transaction has actually been mined)
+    const txnReceipt = await txnResponse.wait();
+    console.log(txnReceipt)
+    // stop loader here
   }
 
   return (
