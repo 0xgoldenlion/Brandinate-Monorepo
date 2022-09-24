@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { gql, useMutation, useQuery } from '@apollo/client';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -149,6 +147,7 @@ export default function Account() {
   );
 
   const handleUpdate = () => {
+// @ts-ignore
     const { id, version } = myProfile.node;
     updateProfile({
       variables: { input: { id, content, options: { version } } },
@@ -190,6 +189,7 @@ export default function Account() {
   const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, files } = e.target;
     const data = new FormData();
+// @ts-ignore
     data.append('file', files[0]);
     const cid = await pinataService.uploadImage(data);
     setContent({ ...content, [name]: cid });
@@ -203,14 +203,18 @@ export default function Account() {
     ) {
       setMyProfile(
         profileQuery.data?.profileIndex.edges.filter(
+// @ts-ignore
           (a) => a.node.author.id == profileQuery.data?.viewer.id
         )[0]
       );
     }
+// @ts-ignore
   }, [profileQuery.data, state.status]);
 
   useEffect(() => {
+// @ts-ignore
     if (myProfile?.node) {
+// @ts-ignore
       const { __typename, version, id, author, ...data } = myProfile.node;
       setContent(data);
     }
@@ -242,6 +246,7 @@ export default function Account() {
                         type='text'
                         autoComplete='given-name'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+// @ts-ignore
                         placeholder={myProfile?.node?.name || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -264,6 +269,7 @@ export default function Account() {
                       name='category'
                       autoComplete='category-name'
                       className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+// @ts-ignore
                       placeholder={myProfile?.node?.category || ''}
                       disabled={
                         updateProfileState.loading || createProfileState.loading
@@ -290,6 +296,7 @@ export default function Account() {
                         name='website'
                         autoComplete='website'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+// @ts-ignore
                         placeholder={myProfile?.node?.website || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -314,6 +321,7 @@ export default function Account() {
                         name='slogan'
                         autoComplete='slogan'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+// @ts-ignore
                         placeholder={myProfile?.node?.slogan || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -337,6 +345,7 @@ export default function Account() {
                         name='description'
                         rows={5}
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+// @ts-ignore
                         placeholder={myProfile?.node?.description || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -478,6 +487,7 @@ export default function Account() {
                         type='email'
                         autoComplete='email'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+// @ts-ignore
                         placeholder={myProfile?.node?.email || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -501,6 +511,7 @@ export default function Account() {
                         name='phone'
                         type='text'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+// @ts-ignore
                         placeholder={myProfile?.node?.phone || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -523,6 +534,7 @@ export default function Account() {
                       name='country'
                       autoComplete='country-name'
                       className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+// @ts-ignore
                       placeholder={myProfile?.node?.country || ''}
                       disabled={
                         updateProfileState.loading || createProfileState.loading
@@ -549,6 +561,7 @@ export default function Account() {
                         name='city'
                         autoComplete='address-level1'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+// @ts-ignore
                         placeholder={myProfile?.node?.city || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -573,6 +586,7 @@ export default function Account() {
                         name='postalCode'
                         autoComplete='postalCode'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+// @ts-ignore
                         placeholder={myProfile?.node?.postalCode || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -597,6 +611,7 @@ export default function Account() {
                         name='address'
                         autoComplete='address'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+// @ts-ignore
                         placeholder={myProfile?.node?.address || ''}
                         disabled={
                           updateProfileState.loading ||

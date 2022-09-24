@@ -5,19 +5,6 @@ type Query {
     id: ID!
   ): Node
   viewer: CeramicAccount
-  profileIndex(
-    """Returns the items in the list that come after the specified cursor."""
-    after: String
-
-    """Returns the first n items from the list."""
-    first: Int
-
-    """Returns the items in the list that come before the specified cursor."""
-    before: String
-
-    """Returns the last n items from the list."""
-    last: Int
-  ): ProfileConnection
   productIndex(
     """Returns the items in the list that come after the specified cursor."""
     after: String
@@ -31,6 +18,19 @@ type Query {
     """Returns the last n items from the list."""
     last: Int
   ): ProductConnection
+  profileIndex(
+    """Returns the items in the list that come after the specified cursor."""
+    after: String
+
+    """Returns the first n items from the list."""
+    first: Int
+
+    """Returns the items in the list that come before the specified cursor."""
+    before: String
+
+    """Returns the last n items from the list."""
+    last: Int
+  ): ProfileConnection
 }
 
 """An object with an ID"""
@@ -42,7 +42,6 @@ interface Node {
 type CeramicAccount implements Node {
   id: ID!
   isViewer: Boolean!
-  profile: Profile
   productList(
     """Returns the items in the list that come after the specified cursor."""
     after: String
@@ -56,35 +55,8 @@ type CeramicAccount implements Node {
     """Returns the last n items from the list."""
     last: Int
   ): ProductConnection
+  profile: Profile
 }
-
-type Profile implements Node {
-  id: ID!
-  city: String!
-  logo: String!
-  name: String!
-  email: String!
-  phone: String!
-  slogan: String
-  address: String!
-  country: String!
-  website: String!
-  category: ProfileBrandCategory
-  postalCode: String!
-  description: String!
-  headerImage: String
-  author: CeramicAccount!
-  version: CeramicCommitID!
-}
-
-enum ProfileBrandCategory {
-  ELECTRONICS
-  CLOTHES
-  VEHICLES
-}
-
-"""A Ceramic Commit ID"""
-scalar CeramicCommitID
 
 """A connection to a list of items."""
 type ProductConnection {
@@ -141,6 +113,34 @@ enum ProductCategory {
   VEHICLES
 }
 
+"""A Ceramic Commit ID"""
+scalar CeramicCommitID
+
+type Profile implements Node {
+  id: ID!
+  city: String!
+  logo: String!
+  name: String!
+  email: String!
+  phone: String!
+  slogan: String
+  address: String!
+  country: String!
+  website: String!
+  category: ProfileBrandCategory
+  postalCode: String!
+  description: String!
+  headerImage: String
+  author: CeramicAccount!
+  version: CeramicCommitID!
+}
+
+enum ProfileBrandCategory {
+  ELECTRONICS
+  CLOTHES
+  VEHICLES
+}
+
 """A connection to a list of items."""
 type ProfileConnection {
   """Information to aid in pagination."""
@@ -160,10 +160,75 @@ type ProfileEdge {
 }
 
 type Mutation {
-  createProfile(input: CreateProfileInput!): CreateProfilePayload
-  updateProfile(input: UpdateProfileInput!): UpdateProfilePayload
   createProduct(input: CreateProductInput!): CreateProductPayload
   updateProduct(input: UpdateProductInput!): UpdateProductPayload
+  createProfile(input: CreateProfileInput!): CreateProfilePayload
+  updateProfile(input: UpdateProfileInput!): UpdateProfilePayload
+}
+
+type CreateProductPayload {
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+  viewer: CeramicAccount
+  document: Product!
+  clientMutationId: String
+}
+
+input CreateProductInput {
+  content: ProductInput!
+  clientMutationId: String
+}
+
+input ProductInput {
+  gtin: String
+  name: String!
+  category: ProductCategory
+  mainImage: String!
+  netContent: String
+  description: String!
+  retailPrize: String!
+  measurableUnit: String!
+  aditionalImages: String
+  countriesAvailable: String!
+}
+
+type UpdateProductPayload {
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+  viewer: CeramicAccount
+  document: Product!
+  clientMutationId: String
+}
+
+input UpdateProductInput {
+  id: ID!
+  content: PartialProductInput!
+  options: UpdateOptionsInput
+  clientMutationId: String
+}
+
+input PartialProductInput {
+  gtin: String
+  name: String
+  category: ProductCategory
+  mainImage: String
+  netContent: String
+  description: String
+  retailPrize: String
+  measurableUnit: String
+  aditionalImages: String
+  countriesAvailable: String
+}
+
+input UpdateOptionsInput {
+  replace: Boolean
+  version: CeramicCommitID
 }
 
 type CreateProfilePayload {
@@ -230,69 +295,4 @@ input PartialProfileInput {
   postalCode: String
   description: String
   headerImage: String
-}
-
-input UpdateOptionsInput {
-  replace: Boolean
-  version: CeramicCommitID
-}
-
-type CreateProductPayload {
-  """Fetches an object given its ID"""
-  node(
-    """The ID of an object"""
-    id: ID!
-  ): Node
-  viewer: CeramicAccount
-  document: Product!
-  clientMutationId: String
-}
-
-input CreateProductInput {
-  content: ProductInput!
-  clientMutationId: String
-}
-
-input ProductInput {
-  gtin: String
-  name: String!
-  category: ProductCategory
-  mainImage: String!
-  netContent: String
-  description: String!
-  retailPrize: String!
-  measurableUnit: String!
-  aditionalImages: String
-  countriesAvailable: String!
-}
-
-type UpdateProductPayload {
-  """Fetches an object given its ID"""
-  node(
-    """The ID of an object"""
-    id: ID!
-  ): Node
-  viewer: CeramicAccount
-  document: Product!
-  clientMutationId: String
-}
-
-input UpdateProductInput {
-  id: ID!
-  content: PartialProductInput!
-  options: UpdateOptionsInput
-  clientMutationId: String
-}
-
-input PartialProductInput {
-  gtin: String
-  name: String
-  category: ProductCategory
-  mainImage: String
-  netContent: String
-  description: String
-  retailPrize: String
-  measurableUnit: String
-  aditionalImages: String
-  countriesAvailable: String
 }

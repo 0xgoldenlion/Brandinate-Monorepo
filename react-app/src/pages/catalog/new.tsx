@@ -1,4 +1,3 @@
-// @ts-nocheck
 import AppLayout from '@/components/layout/AppLayout';
 
 import { gql, useMutation } from '@apollo/client'
@@ -74,6 +73,7 @@ export default function NewProduct() {
         <ProductForm 
           handleChange={handleChange}
           handleMutation={handleMutation}
+// @ts-ignore
           content={content}
           loading={loading}
         />

@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { useState, useEffect} from 'react'
 import { useSignMessage, useConnect } from 'wagmi'
 import { SiweMessage } from 'siwe'
@@ -47,6 +45,7 @@ export function SignInButton({
     const signIn = async () => {
       try {
         const { account: address, chain } = await connectAsync({ connector: connectors[0] })
+        // @ts-ignore
         const authCeramic = await authenticate();
         const chainId = chain?.id
         if (!address || !chainId) return
@@ -86,9 +85,12 @@ export function SignInButton({
     }
 
     useEffect(() => {
+      // @ts-ignore
       if (state.status === 'done') {
+        // @ts-ignore
         from ? Router.replace(from) : Router.push('/catalog');
       }
+      // @ts-ignore
     }, [state.status]);
   
     return (
