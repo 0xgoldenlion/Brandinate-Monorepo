@@ -5,6 +5,9 @@ import img1 from "images/collections/1.png";
 import img2 from "images/collections/5.png";
 import img3 from "images/collections/4.png";
 import img4 from "images/collections/3.png";
+//
+import Tableland from "images/Sponsors/Tableland.svg";
+
 import CardCategory3, {
   CardCategory3Props,
 } from "../CardCategories/CardCategory3";
@@ -12,28 +15,40 @@ import Glide from "@glidejs/glide";
 
 export const TechStack: CardCategory3Props[] = [
   {
-    name: "Data",
+    name: "Tech Stack",
     desc: "Ceramic",
     featuredImage: img1,
-    color: "bg-yellow-50",
+    color: "bg-slate-100/80",
   },
   {
-    name: "Storage",
-    desc: "IPFS",
+    name: "Tech Stack",
+    desc: "The Graph",
     featuredImage: img2,
-    color: "bg-red-50",
+    color: "bg-slate-100/80",
   },
   {
-    name: "L-2",
-    desc: "Polygon",
+    name: "Tech Stack",
+    desc: "IPFS",
     featuredImage: img3,
-    color: "bg-blue-50",
+    color: "bg-slate-100/80",
   },
   {
-    name: "dNFT",
-    desc: "Tableland",
+    name: "Tech Stack",
+    desc: "Polygon",
     featuredImage: img4,
-    color: "bg-green-50",
+    color: "bg-slate-100/80",
+  },
+  {
+    name: "Tech Stack",
+    desc: "Spruce",
+    featuredImage: img4,
+    color: "bg-slate-100/80",
+  },
+  {
+    name: "Tech Stack",
+    desc: "Tableland",
+    featuredImage: Tableland,
+    color: "bg-slate-100/80",
   },
 ];
 

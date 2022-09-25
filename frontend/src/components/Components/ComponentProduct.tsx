@@ -6,6 +6,7 @@ import Policy from "../Objects/MintGuide";
 import AccordionInfo from "../Objects/ProductInformation";
 //
 import ButtonPrimary from "shared/Button/ButtonPrimary";
+//
 import SectionGridMoreExplore, { DEMO_MORE_EXPLORE_DATA } from "pages/ProductPage/ExploreUseCases";
 import BackgroundSection from "pages/ProductPage/BackgroundSection";
 //
@@ -58,24 +59,24 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
 
         {/*  ---------- 4  QTY AND ADD TO CART BUTTON */}
         <div className="flex space-x-3.5">
-
-          <ButtonPrimary
-            className="flex-1 flex-shrink-0"
-          >
-            <span className="ml-3" onClick={() => mintNft()}>{loading ? "Minting..." : "Mint"}</span>
-          </ButtonPrimary>
           <ButtonPrimary
             className="flex-1 flex-shrink-0"
           >
             <span className="ml-3" onClick={() => walletConnect()}>Connect Wallet</span>
           </ButtonPrimary>
-
+        </div>
+        <div className="flex space-x-3.5">
           <ButtonPrimary
             className="flex-1 flex-shrink-0"
           >
-            <span className="ml-3" onClick={() => updateProductMetadata()}>Check If Follows Lens</span>
+            <span className="ml-3" onClick={() => mintNft()}>{loading ? "Minting..." : "Mint dNFT"}</span>
           </ButtonPrimary>
-          <div>{signer}</div>
+          <ButtonPrimary
+            className="flex-1 flex-shrink-0"
+          >
+            <span className="ml-3" onClick={() => updateProductMetadata()}>Update</span>
+          </ButtonPrimary>
+          {signer}
         </div>
 
         {/*  */}
