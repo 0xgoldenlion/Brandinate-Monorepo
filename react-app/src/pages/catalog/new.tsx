@@ -1,11 +1,11 @@
+import { gql, useMutation } from '@apollo/client';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+
+import ProductForm from '@/components/brand-products/ProductForm';
 import AppLayout from '@/components/layout/AppLayout';
 
-import { gql, useMutation } from '@apollo/client'
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import ProductForm from '@/components/brand-products/ProductForm';
-
-export interface ProductType {
+export interface Product {
   aditionalImages?: string;
   countriesAvailable?: string;
   gtin?: string;
@@ -19,7 +19,6 @@ export interface ProductType {
   id: string;
 }
 
-
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CreateProduct($input: CreateProductInput!) {
     createProduct(input: $input) {
@@ -28,7 +27,7 @@ const CREATE_PRODUCT_MUTATION = gql`
       }
     }
   }
-`
+`;
 
 export default function NewProduct() {
   const initialProduct = {
@@ -42,42 +41,42 @@ export default function NewProduct() {
     description: '',
     name: '',
     measurableUnit: '',
-  }
-  const [content, setContent] = useState(initialProduct)
-  const router = useRouter()
-  const [createProduct, { loading }] = useMutation(CREATE_PRODUCT_MUTATION, {
-    refetchQueries: ['ProductsList'],
-  })
+  };
+  const [product, setProduct] = useState(initialProduct);
+  const router = useRouter();
+  const [createProductMutation, { loading }] = useMutation(
+    CREATE_PRODUCT_MUTATION,
+    {
+      refetchQueries: ['ProductsList'],
+    }
+  );
 
-  const handleMutation = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault()
-    createProduct({ variables: { input: { content } } }).then(
-      (res) => {
-        router.push('/catalog')
+  const createProduct = () => {
+    createProductMutation({ variables: { input: { content: product } } }).then(
+      () => {
+        router.push('/catalog');
       },
-      (err) => {
-        alert(err)
+      (error: string) => {
+        alert(error);
       }
-    )
-  }
+    );
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setContent({...content, [name]: value})
-  }
-  
+  const productChanged = (name: string, value: any) => {
+    setProduct({ ...product, [name]: value });
+  };
+
   return (
     <AppLayout>
       <div className='mx-auto w-4/6 p-8 px-4 sm:px-6 md:px-8'>
         <h1 className='text-2xl font-semibold text-gray-900'>New Product</h1>
-        <ProductForm 
-          handleChange={handleChange}
-          handleMutation={handleMutation}
-// @ts-ignore
-          content={content}
+        <ProductForm
+          productChanged={productChanged}
+          persist={createProduct}
+          // @ts-ignore
+          product={product}
           loading={loading}
         />
-        
       </div>
     </AppLayout>
   );
