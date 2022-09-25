@@ -65,18 +65,20 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
             <span className="ml-3" onClick={() => walletConnect()}>Connect Wallet</span>
           </ButtonPrimary>
         </div>
+        <div>
+        {signer}
+        </div>
         <div className="flex space-x-3.5">
           <ButtonPrimary
             className="flex-1 flex-shrink-0"
           >
-            <span className="ml-3" onClick={() => mintNft()}>{loading ? "Minting..." : "Mint dNFT"}</span>
+            <span className="ml-3" onClick={() => mintNft()}>{loading ? "Mint" : "Mint"}</span>
           </ButtonPrimary>
           <ButtonPrimary
             className="flex-1 flex-shrink-0"
           >
-            <span className="ml-3" onClick={() => updateProductMetadata()}>Update</span>
+            <span className="ml-3" onClick={() => updateProductMetadata()}>Activate</span>
           </ButtonPrimary>
-          {signer}
         </div>
 
         {/*  */}
