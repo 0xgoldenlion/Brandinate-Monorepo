@@ -18,11 +18,9 @@ const Badge: FC<BadgeProps> = ({
   const getColorClass = (hasHover = true) => {
     switch (color) {
       case "pink":
-        return `text-[#1d1e5f] ${
+        return `text-pink-800 bg-pink-100 ${
           hasHover ? "hover:bg-pink-800" : ""
         }`;
-              case "red":
-        return `text-red-800 bg-red-100 ${hasHover ? "hover:bg-red-800" : ""}`;
       case "red":
         return `text-red-800 bg-red-100 ${hasHover ? "hover:bg-red-800" : ""}`;
       case "gray":

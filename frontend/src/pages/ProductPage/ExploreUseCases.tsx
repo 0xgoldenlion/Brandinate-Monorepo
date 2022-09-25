@@ -10,12 +10,6 @@ import explore3Svg from "images/collections/explore3.svg";
 import explore8Svg from "images/collections/explore8.svg";
 //
 import UseCase from "images/Icons/UseCase.png";
-import UseCase1 from "images/Icons/UseCase1.png";
-import UseCase2 from "images/Icons/UseCase2.png";
-import UseCase3 from "images/Icons/UseCase3.png";
-import UseCase4 from "images/Icons/UseCase4.png";
-import UseCase5 from "images/Icons/UseCase5.png";
-import UseCase6 from "images/Icons/UseCase6.png";
 //
 import CardCategory6 from "components/CardCategories/CardCategory6";
 
@@ -40,7 +34,7 @@ export const DEMO_MORE_EXPLORE_DATA = [
     id: 1,
     name: "Backpack",
     desc: "Use Case",
-    image: UseCase1,
+    image: UseCase,
     svgBg: explore1Svg,
     color: "bg-indigo-50",
   },
@@ -64,7 +58,7 @@ export const DEMO_MORE_EXPLORE_DATA = [
     id: 4,
     name: "Circular Economy",
     desc: "Use Case",
-    image: UseCase1,
+    image: UseCase,
     svgBg: explore8Svg,
     color: "bg-orange-50",
   },
@@ -72,7 +66,7 @@ export const DEMO_MORE_EXPLORE_DATA = [
     id: 5,
     name: "Emerging Media",
     desc: "Use Case",
-    image: UseCase2,
+    image: UseCase,
     svgBg: explore8Svg,
     color: "bg-blue-50",
   },
@@ -80,7 +74,7 @@ export const DEMO_MORE_EXPLORE_DATA = [
     id: 6,
     name: "First-Party Data",
     desc: "Use Case",
-    image: UseCase3,
+    image: UseCase,
     svgBg: explore8Svg,
     color: "bg-orange-50",
   },
@@ -88,7 +82,7 @@ export const DEMO_MORE_EXPLORE_DATA = [
     id: 7,
     name: "Sustainability",
     desc: "Use Case",
-    image: UseCase4,
+    image: UseCase,
     svgBg: explore8Svg,
     color: "bg-stone-100",
   },
@@ -96,7 +90,7 @@ export const DEMO_MORE_EXPLORE_DATA = [
     id: 8,
     name: "Token Gating",
     desc: "Use Case",
-    image: UseCase5,
+    image: UseCase,
     svgBg: explore8Svg,
     color: "bg-blue-50",
   },
@@ -104,7 +98,7 @@ export const DEMO_MORE_EXPLORE_DATA = [
     id: 9,
     name: "User Engagement",
     desc: "Use Case",
-    image: UseCase6,
+    image: UseCase,
     svgBg: explore8Svg,
     color: "bg-slate-100/80",
   },
