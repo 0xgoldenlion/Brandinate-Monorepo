@@ -41,6 +41,7 @@ const Home = () => {
   
   return (
     <div>
+    <div className="m-10">hola</div>
       {nftsOwned}
     </div>
   )

@@ -1,6 +1,6 @@
+import '../styles/globals.css';
 import { ApolloProvider } from '@apollo/client';
 import { Provider } from 'jotai';
-import { AppProps } from 'next/app';
 import {
   WagmiConfig,
   createClient,
@@ -8,7 +8,6 @@ import {
   configureChains,
 } from 'wagmi'
 
-import '../styles/globals.css';
 
 import { publicProvider } from 'wagmi/providers/public'
 
