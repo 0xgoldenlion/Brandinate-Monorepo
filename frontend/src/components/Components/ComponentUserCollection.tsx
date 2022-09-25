@@ -9,7 +9,9 @@ export interface ComponentUserCollectionProps {
   className?: string;
 }
 
-const ComponentUserCollection: FC<ComponentUserCollectionProps> = ({ className = "lg:pt-10" }) => {
+const ComponentUserCollection: FC<ComponentUserCollectionProps> = ({
+  className = "lg:pt-10",
+}) => {
   return (
     <div className={`nc-ComponentUserCollection ${className}`}>
       <div className="relative flex flex-col lg:flex-row lg:justify-end bg-slate-100/80 rounded-2xl sm:rounded-[40px] p-4 pb-0 sm:p-5 sm:pb-0 lg:p-24">
@@ -21,10 +23,7 @@ const ComponentUserCollection: FC<ComponentUserCollectionProps> = ({ className =
             Interact with your dNFTs to unlock new digital shopping experiences.
           </span>
           <div className="flex space-x-2 sm:space-x-5 mt-6 sm:mt-12">
-            <ButtonPrimary
-              //href="/blog-single"
-              className="dark:bg-slate-200 dark:text-slate-900"
-            >
+            <ButtonPrimary className="dark:bg-slate-200 dark:text-slate-900">
               View Your Collection
             </ButtonPrimary>
           </div>
