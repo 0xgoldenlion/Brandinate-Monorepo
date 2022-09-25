@@ -1,10 +1,12 @@
 import { useEffect, useId } from "react";
 import Heading from "components/Heading/Heading";
-import BackgroundSection from "pages/ProductPage/BackgroundSection";
 import img1 from "images/collections/1.png";
 import img2 from "images/collections/5.png";
 import img3 from "images/collections/4.png";
 import img4 from "images/collections/3.png";
+//
+import Tableland from "images/Sponsors/Tableland.svg";
+
 import CardCategory3, {
   CardCategory3Props,
 } from "../CardCategories/CardCategory3";
@@ -12,28 +14,40 @@ import Glide from "@glidejs/glide";
 
 export const TechStack: CardCategory3Props[] = [
   {
-    name: "Data",
+    name: "Sponsor",
     desc: "Ceramic",
     featuredImage: img1,
-    color: "bg-yellow-50",
+    color: "bg-slate-100/80",
   },
   {
-    name: "Storage",
-    desc: "IPFS",
+    name: "Sponsor",
+    desc: "The Graph",
     featuredImage: img2,
-    color: "bg-red-50",
+    color: "bg-slate-100/80",
   },
   {
-    name: "L-2",
-    desc: "Polygon",
+    name: "Sponsor",
+    desc: "IPFS",
     featuredImage: img3,
-    color: "bg-blue-50",
+    color: "bg-slate-100/80",
   },
   {
-    name: "dNFT",
-    desc: "Tableland",
+    name: "Sponsor",
+    desc: "Polygon",
     featuredImage: img4,
-    color: "bg-green-50",
+    color: "bg-slate-100/80",
+  },
+  {
+    name: "Sponsor",
+    desc: "Spruce",
+    featuredImage: img4,
+    color: "bg-slate-100/80",
+  },
+  {
+    name: "Sponsor",
+    desc: "Tableland",
+    featuredImage: Tableland,
+    color: "bg-slate-100/80",
   },
 ];
 
@@ -79,7 +93,7 @@ const ComponentSlider = () => {
   return (
     <div className={`${UNIQUE_CLASS}`}>
       <Heading
-        className="mb-12 lg:mb-14 text-neutral-900 dark:text-neutral-50 nc-p-r-container "
+        className="mb-12 lg:mb-14 text-[#1d1e5f] dark:text-neutral-50 nc-p-r-container "
       >
         Explore our tech stack.
       </Heading>

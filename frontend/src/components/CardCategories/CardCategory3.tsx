@@ -20,11 +20,7 @@ const CardCategory3: FC<CardCategory3Props> = ({
   color = TechStack[2].color,
 }) => {
   return (
-    <Link
-      to={"/blog-single"}
-      className={`nc-CardCategory3 block ${className}`}
-      data-nc-id="CardCategory3"
-    >
+
       <div
         className={`relative w-full aspect-w-16 aspect-h-11 sm:aspect-h-9 h-0 rounded-2xl overflow-hidden group ${color}`}
       >
@@ -40,12 +36,12 @@ const CardCategory3: FC<CardCategory3Props> = ({
         <div>
           <div className="absolute inset-5 sm:inset-8 flex flex-col">
             <div className="max-w-xs">
-              <span className={`block mb-2 text-sm text-slate-700`}>
+              <span className={`block mb-2 text-sm text-[#1d1e5f]`}>
                 {name}
               </span>
               {desc && (
                 <h2
-                  className={`text-xl md:text-2xl text-slate-900 font-semibold`}
+                  className={`text-xl md:text-2xl text-[#1d1e5f] font-semibold`}
                   dangerouslySetInnerHTML={{ __html: desc }}
                 ></h2>
               )}
@@ -62,7 +58,6 @@ const CardCategory3: FC<CardCategory3Props> = ({
           </div>
         </div>
       </div>
-    </Link>
   );
 };
 
