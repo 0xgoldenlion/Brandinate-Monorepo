@@ -3,8 +3,8 @@ import { Alchemy, Network } from "alchemy-sdk";
 import { useEffect, useState } from "react";
 
 const config = {
-  apiKey: process.env.APIKEY,
-  network: Network.ETH_MAINNET,
+  apiKey: 'VXy6vw8_RAd7U-BNepjTh5_kAOi7g9rR',
+  network: Network.MATIC_MUMBAI,
 };
 const alchemy = new Alchemy(config);
 
@@ -13,10 +13,9 @@ const Home = () => {
   const [user, setUser] = useState(null)
   const getNFTs = async () => {
     // Get all NFTs
-    const nfts = await alchemy.nft.getNftsForOwner(user);
+    const nfts = await alchemy.nft.getNftsForOwner('0x2E04A678635A68e0B794Bc9F57ECd484c75451d6');
     // Print NFTs
-    setNftsOwned(nfts.ownedNfts)
-    console.log('nftsOwned:', nftsOwned);
+    console.log('nfts:', nfts);
   };
 
   const getAccount = async () => {
