@@ -8,6 +8,8 @@ import Textarea from '@/components/form-controls/Textarea';
 
 import { Product } from '@/pages/catalog/new';
 
+import FileUpload from '../form-controls/FileUpload';
+
 const ProductForm = ({
   productChanged,
   persist,
@@ -26,6 +28,10 @@ const ProductForm = ({
   ) => {
     const { name, value } = e.target;
     productChanged(name, value);
+  };
+
+  const onImageChange = (name: string, cid: string) => {
+    productChanged(name, cid);
   };
 
   return (
@@ -51,22 +57,18 @@ const ProductForm = ({
             ></Input>
           </div>
           <div className='col-span-6'>
-            <Input
+            <FileUpload
               name='Main Image'
-              disabled={loading}
-              onChange={onProductChange}
-              value={product.mainImage}
-              placeholder='THIS SHOULD BE A FILE INPUT'
-            ></Input>
+              handleImageChange={onImageChange}
+              cid={product.mainImage ?? ''}
+            ></FileUpload>
           </div>
           <div className='col-span-6'>
-            <Input
+            <FileUpload
               name='Aditional Images'
-              disabled={loading}
-              onChange={onProductChange}
-              value={product.aditionalImages}
-              placeholder='THIS SHOULD BE A FILE INPUT'
-            ></Input>
+              handleImageChange={onImageChange}
+              cid={product.aditionalImages ?? ''}
+            ></FileUpload>
           </div>
           <div className='col-span-3'>
             <Dropdown
