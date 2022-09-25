@@ -1,39 +1,40 @@
+import { gql, useQuery } from '@apollo/client';
+
 import ProductsList from '@/components/brand-products/ProductsList';
 import { ProductsEmptyState } from '@/components/empty-state/products-empty-state';
 import AppLayout from '@/components/layout/AppLayout';
 import H1 from '@/components/text/H1';
 import Subtitle from '@/components/text/Subtitle';
-import { useAuth } from '@/lib/auth';
-
-import { gql, useQuery } from '@apollo/client'
 
 const PRODUCTS_LIST_QUERY = gql`
-query ProductsList {
-  productIndex(last: 50) {
-    edges {
-      node {
-        id
-        name
-        retailPrize
-        category
-        gtin
-        author
-          {
+  query ProductsList {
+    productIndex(last: 50) {
+      edges {
+        node {
+          id
+          name
+          retailPrize
+          category
+          gtin
+          author {
             id
           }
+        }
       }
     }
+    viewer {
+      id
+    }
   }
-  viewer{
-    id
-  }
-}
-`
+`;
 
 export default function Catalog() {
-  const { data } = useQuery(PRODUCTS_LIST_QUERY)
-//@ts-ignore
-  const products = data?.productIndex?.edges.filter((a) => a.node.author.id == data.viewer.id) || []
+  const { data } = useQuery(PRODUCTS_LIST_QUERY);
+  //@ts-ignore
+  const products =
+    data?.productIndex?.edges.filter(
+      (a) => a.node.author.id == data.viewer.id
+    ) || [];
 
   return (
     <>

@@ -8,7 +8,7 @@ import Textarea from '@/components/form-controls/Textarea';
 
 import { Product } from '@/pages/catalog/new';
 
-import FileUpload from '../form-controls/FileUpload';
+import IPFSFileUpload from '../form-controls/IPFSFileUpload';
 
 const ProductForm = ({
   productChanged,
@@ -57,18 +57,18 @@ const ProductForm = ({
             ></Input>
           </div>
           <div className='col-span-6'>
-            <FileUpload
+            <IPFSFileUpload
               name='Main Image'
               handleImageChange={onImageChange}
               cid={product.mainImage ?? ''}
-            ></FileUpload>
+            ></IPFSFileUpload>
           </div>
           <div className='col-span-6'>
-            <FileUpload
+            <IPFSFileUpload
               name='Aditional Images'
               handleImageChange={onImageChange}
               cid={product.aditionalImages ?? ''}
-            ></FileUpload>
+            ></IPFSFileUpload>
           </div>
           <div className='col-span-3'>
             <Dropdown

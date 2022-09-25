@@ -14,16 +14,18 @@ export interface NavigationItem {
   name: string;
   href: string;
   icon: any;
+  comingSoon?: boolean;
 }
 
 const navigation: NavigationItem[] = [
   { name: 'Catalog', href: '/catalog', icon: HomeIcon },
   { name: 'My Account', href: '/account', icon: UserIcon },
-  { name: 'Engagement', href: '/#', icon: UserPlusIcon },
-  { name: 'Notifications', href: '/#', icon: BellIcon },
+  { comingSoon: true, name: 'Engagement', href: '', icon: UserPlusIcon },
+  { comingSoon: true, name: 'Notifications', href: '', icon: BellIcon },
   {
+    comingSoon: true,
     name: 'Settings',
-    href: '/#',
+    href: '',
     icon: AdjustmentsHorizontalIcon,
   },
 ];
