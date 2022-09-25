@@ -1,6 +1,6 @@
 import React from 'react';
-import { ProductType } from '@/pages/catalog/new';
 
+import { Product } from '@/pages/catalog/new';
 
 export default function Input({
   name,
@@ -12,16 +12,19 @@ export default function Input({
   name: string;
   disabled: boolean;
   onChange: (input: React.ChangeEvent<HTMLInputElement>) => void;
-  content: ProductType;
+  content: Product;
   placeholder: string;
 }) {
   function camelize(str: string): string {
-    return str.toLowerCase().replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-      return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    }).replace(/\s+/g, '');
+    return str
+      .toLowerCase()
+      .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+        return index === 0 ? word.toLowerCase() : word.toUpperCase();
+      })
+      .replace(/\s+/g, '');
   }
-  
-  const formatedName: string = camelize(name)
+
+  const formatedName: string = camelize(name);
 
   return (
     <>
@@ -38,7 +41,7 @@ export default function Input({
           autoComplete={formatedName}
           className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
           placeholder={placeholder}
-          value={content[formatedName as keyof ProductType]}
+          value={content[formatedName as keyof Product]}
           disabled={disabled}
           onChange={(e) => onChange(e)}
         />

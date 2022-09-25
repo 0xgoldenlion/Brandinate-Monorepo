@@ -1,20 +1,23 @@
 import { PlusIcon } from '@heroicons/react/20/solid';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+
+import { Product } from '@/pages/catalog/new';
 
 import Button from '../buttons/Button';
 
-import { ProductType } from '@/pages/catalog/new'
-
 interface ProductRecord {
-  node: ProductType
+  node: Product;
 }
 
-export default function ProductsList({ products }: { products: ProductRecord[] }) {
-  const Router = useRouter()
+export default function ProductsList({
+  products,
+}: {
+  products: ProductRecord[];
+}) {
+  const Router = useRouter();
   const redirect = (to: string) => {
-    Router.push(`/catalog/${to}`)
-  }
+    Router.push(`/catalog/${to}`);
+  };
   return (
     <>
       <div className='w-4/6 px-4 sm:px-6 lg:px-8'>
@@ -88,10 +91,12 @@ export default function ProductsList({ products }: { products: ProductRecord[] }
                         <td className='relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6'>
                           <a
                             onClick={() => redirect(product.node.id)}
-                            className='text-indigo-600 hover:text-indigo-900 cursor-pointer'
+                            className='cursor-pointer text-indigo-600 hover:text-indigo-900'
                           >
                             Edit
-                            <span className='sr-only'>, {product.node.name}</span>
+                            <span className='sr-only'>
+                              , {product.node.name}
+                            </span>
                           </a>
                         </td>
                       </tr>
