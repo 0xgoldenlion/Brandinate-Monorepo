@@ -1,11 +1,11 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import { useAuth } from '@/lib/auth';
 
 import Button from '@/components/buttons/Button';
+import IPFSFileUpload from '@/components/form-controls/FileUpload';
 import AppLayout from '@/components/layout/AppLayout';
 import H1 from '@/components/text/H1';
 import Subtitle from '@/components/text/Subtitle';
@@ -102,7 +102,7 @@ interface ProfileType extends Content {
 }
 
 interface ProfileRecord {
-  node: ProfileType
+  node: ProfileType;
 }
 
 export default function Account() {
@@ -120,7 +120,7 @@ export default function Account() {
     email: '',
     phone: '',
     postalCode: '',
-  }
+  };
   const cleanProfile = {
     ...cleanContent,
     id: '',
@@ -131,7 +131,6 @@ export default function Account() {
   const [myProfile, setMyProfile] = useState(null);
   const [content, setContent] = useState(cleanContent);
   const [state] = useAuth();
-  const pinataService = new PinataService();
   const profileQuery = useQuery(PROFILE_QUERY);
   const [createProfile, createProfileState] = useMutation(
     CREATE_PROFILE_MUTATION,
@@ -147,7 +146,7 @@ export default function Account() {
   );
 
   const handleUpdate = () => {
-// @ts-ignore
+    // @ts-ignore
     const { id, version } = myProfile.node;
     updateProfile({
       variables: { input: { id, content, options: { version } } },
@@ -181,17 +180,16 @@ export default function Account() {
   //   return <h1>Loading profile...</h1>;
   // }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value } = e.target;
     setContent({ ...content, [name]: value });
   };
 
-  const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, files } = e.target;
-    const data = new FormData();
-// @ts-ignore
-    data.append('file', files[0]);
-    const cid = await pinataService.uploadImage(data);
+  const handleImageChange = (name: string, cid: string) => {
     setContent({ ...content, [name]: cid });
   };
 
@@ -203,18 +201,18 @@ export default function Account() {
     ) {
       setMyProfile(
         profileQuery.data?.profileIndex.edges.filter(
-// @ts-ignore
+          // @ts-ignore
           (a) => a.node.author.id == profileQuery.data?.viewer.id
         )[0]
       );
     }
-// @ts-ignore
+    // @ts-ignore
   }, [profileQuery.data, state.status]);
 
   useEffect(() => {
-// @ts-ignore
+    // @ts-ignore
     if (myProfile?.node) {
-// @ts-ignore
+      // @ts-ignore
       const { __typename, version, id, author, ...data } = myProfile.node;
       setContent(data);
     }
@@ -246,7 +244,7 @@ export default function Account() {
                         type='text'
                         autoComplete='given-name'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-// @ts-ignore
+                        // @ts-ignore
                         placeholder={myProfile?.node?.name || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -269,7 +267,7 @@ export default function Account() {
                       name='category'
                       autoComplete='category-name'
                       className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-// @ts-ignore
+                      // @ts-ignore
                       placeholder={myProfile?.node?.category || ''}
                       disabled={
                         updateProfileState.loading || createProfileState.loading
@@ -296,7 +294,7 @@ export default function Account() {
                         name='website'
                         autoComplete='website'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-// @ts-ignore
+                        // @ts-ignore
                         placeholder={myProfile?.node?.website || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -321,7 +319,7 @@ export default function Account() {
                         name='slogan'
                         autoComplete='slogan'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-// @ts-ignore
+                        // @ts-ignore
                         placeholder={myProfile?.node?.slogan || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -345,7 +343,7 @@ export default function Account() {
                         name='description'
                         rows={5}
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-// @ts-ignore
+                        // @ts-ignore
                         placeholder={myProfile?.node?.description || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -363,108 +361,18 @@ export default function Account() {
               </div>
               <div className='pt-1'>
                 <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
-                  <div className='sm:col-span-6'>
-                    <label
-                      // htmlFor='logo'
-                      className='text-lg font-medium leading-6 text-gray-900'
-                    >
-                      Logo
-                    </label>
-                    <div className='mt-4 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6'>
-                      <div className='space-y-1 text-center'>
-                        <svg
-                          className='mx-auto h-12 w-12 text-gray-400'
-                          stroke='currentColor'
-                          fill='none'
-                          viewBox='0 0 48 48'
-                          aria-hidden='true'
-                        >
-                          <path
-                            d='M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02'
-                            strokeWidth={2}
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                          />
-                        </svg>
-                        <div className='flex text-sm text-gray-600'>
-                          <label
-                            htmlFor='logo'
-                            className='relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500'
-                          >
-                            <span>Upload a file</span>
-                            <input
-                              name='logo'
-                              type='file'
-                              className=''
-                              // className='sr-only'
-                              onChange={(e) => handleImage(e)}
-                            />
-                          </label>
-                          <p className='pl-1'>or drag and drop</p>
-                        </div>
-                        <p className='text-xs text-gray-500'>
-                          PNG, JPG, GIF up to 10MB
-                        </p>
-                      </div>
-                      {content.logo !== '' && (
-                        <div>
-                          <Image
-                            src={`https://ipfs.io/ipfs/${content.logo}`}
-                            alt='logo'
-                            width='100%'
-                            height='100%'
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                  <IPFSFileUpload
+                    name='Logo'
+                    cid={content.logo}
+                    handleImageChange={handleImageChange}
+                  ></IPFSFileUpload>
                 </div>
                 <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
-                  <div className='sm:col-span-6'>
-                    <label
-                      htmlFor='headerImage'
-                      className='text-lg font-medium leading-6 text-gray-900'
-                    >
-                      Header
-                    </label>
-                    <div className='mt-4 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6'>
-                      <div className='space-y-1 text-center'>
-                        <svg
-                          className='mx-auto h-12 w-12 text-gray-400'
-                          stroke='currentColor'
-                          fill='none'
-                          viewBox='0 0 48 48'
-                          aria-hidden='true'
-                        >
-                          <path
-                            d='M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02'
-                            strokeWidth={2}
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                          />
-                        </svg>
-                        <div className='flex text-sm text-gray-600'>
-                          <label
-                            htmlFor='headerImage'
-                            className='relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500'
-                          >
-                            <span>Upload a file</span>
-                            <input
-                              name='headerImage'
-                              type='file'
-                              className=''
-                              // className='sr-only'
-                              onChange={(e) => handleImage(e)}
-                            />
-                          </label>
-                          <p className='pl-1'>or drag and drop</p>
-                        </div>
-                        <p className='text-xs text-gray-500'>
-                          PNG, JPG, GIF up to 10MB
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  <IPFSFileUpload
+                    name='Header'
+                    cid={content.headerImage}
+                    handleImageChange={handleImageChange}
+                  ></IPFSFileUpload>
                 </div>
               </div>
               <div className='pt-5'>
@@ -487,7 +395,7 @@ export default function Account() {
                         type='email'
                         autoComplete='email'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-// @ts-ignore
+                        // @ts-ignore
                         placeholder={myProfile?.node?.email || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -511,7 +419,7 @@ export default function Account() {
                         name='phone'
                         type='text'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-// @ts-ignore
+                        // @ts-ignore
                         placeholder={myProfile?.node?.phone || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -534,7 +442,7 @@ export default function Account() {
                       name='country'
                       autoComplete='country-name'
                       className='mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-// @ts-ignore
+                      // @ts-ignore
                       placeholder={myProfile?.node?.country || ''}
                       disabled={
                         updateProfileState.loading || createProfileState.loading
@@ -561,7 +469,7 @@ export default function Account() {
                         name='city'
                         autoComplete='address-level1'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-// @ts-ignore
+                        // @ts-ignore
                         placeholder={myProfile?.node?.city || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -586,7 +494,7 @@ export default function Account() {
                         name='postalCode'
                         autoComplete='postalCode'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-// @ts-ignore
+                        // @ts-ignore
                         placeholder={myProfile?.node?.postalCode || ''}
                         disabled={
                           updateProfileState.loading ||
@@ -611,7 +519,7 @@ export default function Account() {
                         name='address'
                         autoComplete='address'
                         className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
-// @ts-ignore
+                        // @ts-ignore
                         placeholder={myProfile?.node?.address || ''}
                         disabled={
                           updateProfileState.loading ||
