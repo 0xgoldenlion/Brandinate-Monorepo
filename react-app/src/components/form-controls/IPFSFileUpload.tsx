@@ -3,7 +3,7 @@ import React from 'react';
 
 import PinataService from '@/services/PinataService';
 
-export default function FileUpload({
+export default function IPFSFileUpload({
   cid: logoCID,
   name,
   handleImageChange,

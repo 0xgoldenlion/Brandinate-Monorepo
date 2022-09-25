@@ -5,12 +5,10 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/auth';
 
 import Button from '@/components/buttons/Button';
-import IPFSFileUpload from '@/components/form-controls/FileUpload';
+import IPFSFileUpload from '@/components/form-controls/IPFSFileUpload';
 import AppLayout from '@/components/layout/AppLayout';
 import H1 from '@/components/text/H1';
 import Subtitle from '@/components/text/Subtitle';
-
-import PinataService from '../services/PinataService';
 
 const PROFILE_QUERY = gql`
   query UserScreen {
@@ -221,17 +219,17 @@ export default function Account() {
   return (
     <AppLayout>
       <div className='flex justify-center'>
-        <form className='space-y-8 divide-y divide-gray-200 py-12 md:w-2/3 lg:w-4/6'>
+        <form className='space-y-8 divide-gray-200 md:w-2/3 lg:w-4/6'>
           <div>
             <H1>Account</H1>
             <Subtitle className='mt-1'>
               Here you can edit your account settings.
             </Subtitle>
           </div>
-          <div className=' border-2 p-12'>
+          <div className=' rounded-lg border-2 p-12'>
             <div className='space-y-8 divide-y divide-gray-200'>
-              <div className=''>
-                <div className='mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
+              <div>
+                <div className='grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6'>
                   <div className='sm:col-span-3'>
                     <label
                       htmlFor='name'

@@ -1,49 +1,28 @@
-import { FC, useState } from "react";
-//
 import Logo from "shared/Logo/Logo";
-//
-import HeaderWallet from "./HeaderWallet";
-import HeaderSwitch from "components/Header/HeaderSwitch";
 
-export interface MainNav2Props {
-  className?: string;
-}
-
-const HeaderNavigation: FC<MainNav2Props> = ({ className = "" }) => {
-  const [showSearchForm, setShowSearchForm] = useState(false);
-
-  const renderSearchForm = () => {
-    return (
-      <form
-        action=""
-        method="POST"
-        className="flex-1 py-2 text-slate-900 dark:text-slate-100"
-      >
-        <input type="submit" hidden value="" />
-      </form>
-    );
-  };
-
+const HeaderNavigation = () => {
   return (
-    <div className="nc-MainNav2Logged relative z-10 bg-white dark:bg-slate-900 ">
+    <div className="nc-MainNav2Logged relative z-10 bg-white dark:bg-slate-900">
       <div className="container">
         <div className="h-20 flex justify-between">
-          <div className="flex items-center md:hidden flex-1">
-          </div>
+          <div className="flex items-center md:hidden flex-1"></div>
 
           <div className="flex lg:flex-1 items-center space-x-3 sm:space-x-8">
             <Logo />
-            {!showSearchForm && (
-              <div className="hidden md:block h-10 border-l border-slate-200 dark:border-slate-700"></div>
-            )}
-            {!showSearchForm && (
-              <div className="hidden md:block">
-              </div>
-            )}
           </div>
-          <div className="flex-1 flex items-center justify-end ">
-            <HeaderWallet />
-            {/* <MenuBar /> */}
+          <div className="flex-1 flex items-center justify-end space-x-4">
+            <a
+              className="hover:bg-gray-200 rounded-lg border-2 p-2"
+              href="https://demo.brandinate.com/login"
+            >
+              Brand Portal
+            </a>
+            <a
+              className="hover:bg-gray-200 rounded-lg border-2 p-2"
+              href="https://user.brandinate.com/login"
+            >
+              User Collection
+            </a>
           </div>
         </div>
       </div>

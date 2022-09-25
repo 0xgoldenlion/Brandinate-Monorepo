@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { Fragment, useState } from 'react';
 import { Subject } from 'rxjs';
 
@@ -149,14 +149,11 @@ export function NavigationSidebar({
               />
             </div>
             <nav className='mt-5 flex-1 space-y-1 px-2'>
-              {navigation.map((item) => (
-                <Link key={item.name} href={item.href}>
+              {navigation.map((item, index) =>
+                item.comingSoon ? (
                   <div
-                    className={`group flex cursor-pointer items-center rounded-md px-2 py-2 text-sm font-medium ${
-                      router.pathname.startsWith(item.href)
-                        ? 'bg-indigo-800 text-white'
-                        : 'text-white hover:bg-indigo-600 hover:bg-opacity-75'
-                    }`}
+                    key={index}
+                    className='group flex items-center rounded-md px-2 py-2 text-sm font-medium text-white'
                   >
                     <item.icon
                       className='mr-3 h-6 w-6 flex-shrink-0 text-indigo-300'
@@ -164,8 +161,24 @@ export function NavigationSidebar({
                     />
                     {item.name}
                   </div>
-                </Link>
-              ))}
+                ) : (
+                  <Link key={item.name} href={item.href}>
+                    <div
+                      className={`group flex cursor-pointer items-center rounded-md px-2 py-2 text-sm font-medium ${
+                        router.pathname.startsWith(item.href)
+                          ? 'bg-indigo-800 text-white'
+                          : 'text-white hover:bg-indigo-600 hover:bg-opacity-75'
+                      }`}
+                    >
+                      <item.icon
+                        className='mr-3 h-6 w-6 flex-shrink-0 text-indigo-300'
+                        aria-hidden='true'
+                      />
+                      {item.name}
+                    </div>
+                  </Link>
+                )
+              )}
             </nav>
           </div>
           <div className='flex flex-shrink-0 border-t border-indigo-800 p-4'>
