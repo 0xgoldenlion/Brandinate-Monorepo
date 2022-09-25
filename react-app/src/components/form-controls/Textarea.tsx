@@ -1,18 +1,16 @@
 import React from 'react';
 
-import { Product } from '@/pages/catalog/new';
-
 export default function Textarea({
   name,
   disabled,
   onChange,
-  content,
+  value,
   ...props
 }: {
   name: string;
   disabled: boolean;
   onChange: (input: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  content: Product;
+  value?: string;
   [key: string]: any;
 }) {
   function camelize(str: string) {
@@ -39,7 +37,7 @@ export default function Textarea({
           className='mt-1 !h-full w-full resize-none rounded border-gray-300 text-sm shadow-sm'
           name={formatedName}
           autoComplete={formatedName}
-          value={content[formatedName as keyof Product]}
+          value={value}
           disabled={disabled}
           onChange={(e) => onChange(e)}
           {...(props ?? {})}
