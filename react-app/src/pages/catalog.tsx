@@ -30,10 +30,9 @@ const PRODUCTS_LIST_QUERY = gql`
 
 export default function Catalog() {
   const { data } = useQuery(PRODUCTS_LIST_QUERY);
-  //@ts-ignore
   const products =
     data?.productIndex?.edges.filter(
-      (a) => a.node.author.id == data.viewer.id
+      (a: any) => a.node.author.id == data.viewer.id
     ) || [];
 
   return (
