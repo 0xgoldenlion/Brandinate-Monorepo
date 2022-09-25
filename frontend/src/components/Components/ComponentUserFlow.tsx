@@ -40,7 +40,7 @@ const DEMO_DATA = [
     id: 4,
     img: Step4Graphic,
     imgDark: Step4Graphic,
-    title: "Reward User Interactions",
+    title: "Reward User Behavior",
     desc: "Engage customers with acustom digital twin as a dNFT.",
   },
 ];
