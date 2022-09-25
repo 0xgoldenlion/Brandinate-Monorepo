@@ -51,7 +51,7 @@ export default function NewProduct() {
     name: '',
     measurableUnit: '',
   };
-  const [content, setContent] = useState(initialProduct);
+  const [product, setContent] = useState(initialProduct);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const { id } = router.query;
@@ -66,7 +66,7 @@ export default function NewProduct() {
   const updateProduct = () => {
     const { version } = productQuery.data.product;
     updateProductMutation({
-      variables: { input: { id, content, options: { version } } },
+      variables: { input: { id, content: product, options: { version } } },
     }).then(
       () => {
         router.push('/catalog');
@@ -78,7 +78,7 @@ export default function NewProduct() {
   };
 
   const productChanged = (name: string, value: any) => {
-    setContent({ ...content, [name]: value });
+    setContent({ ...product, [name]: value });
   };
 
   useEffect(() => {
@@ -97,7 +97,7 @@ export default function NewProduct() {
           productChanged={productChanged}
           persist={updateProduct}
           // @ts-ignore
-          product={content}
+          product={product}
           loading={loading}
         />
       </div>
