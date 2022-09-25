@@ -1,5 +1,6 @@
 import { PlusIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
+
 import Button from '../buttons/Button';
 
 export function ProductsEmptyState() {
@@ -26,7 +27,7 @@ export function ProductsEmptyState() {
           Get started by creating a new product.
         </p>
         <div className='mt-6'>
-          <Link href={'/catalog/new'}>
+          <Link href='/catalog/new'>
             <Button>
               <PlusIcon className='-ml-1 mr-2 h-5 w-5' aria-hidden='true' />
               New Product

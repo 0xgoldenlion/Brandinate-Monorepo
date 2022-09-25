@@ -1,8 +1,7 @@
 import { FC } from "react";
-//
 import HeaderNavigation from "./HeaderNavigation";
 
-export interface HeaderProps { }
+export interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => {
   return (
