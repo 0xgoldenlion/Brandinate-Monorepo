@@ -11,7 +11,7 @@ import { Product } from '@/pages/catalog/new';
 const ProductForm = ({
   productChanged,
   persist,
-  product: content,
+  product,
   loading,
 }: {
   productChanged: (name: string, value: any) => void;
@@ -37,7 +37,7 @@ const ProductForm = ({
               name='Name'
               disabled={loading}
               onChange={onProductChange}
-              content={content}
+              value={product.name}
               placeholder='GoPro HERO10 Black'
             ></Input>
           </div>
@@ -46,7 +46,7 @@ const ProductForm = ({
               name='Retail Prize'
               disabled={loading}
               onChange={onProductChange}
-              content={content}
+              value={product.retailPrize}
               placeholder='$449.98'
             ></Input>
           </div>
@@ -55,7 +55,7 @@ const ProductForm = ({
               name='Main Image'
               disabled={loading}
               onChange={onProductChange}
-              content={content}
+              value={product.mainImage}
               placeholder='THIS SHOULD BE A FILE INPUT'
             ></Input>
           </div>
@@ -64,7 +64,7 @@ const ProductForm = ({
               name='Aditional Images'
               disabled={loading}
               onChange={onProductChange}
-              content={content}
+              value={product.aditionalImages}
               placeholder='THIS SHOULD BE A FILE INPUT'
             ></Input>
           </div>
@@ -74,7 +74,7 @@ const ProductForm = ({
               options={['United States']}
               disabled={loading}
               onChange={onProductChange}
-              content={content}
+              value={product.countriesAvailable}
             ></Dropdown>
           </div>
           <div className='col-span-3'>
@@ -83,7 +83,7 @@ const ProductForm = ({
               options={['ELECTRONICS', 'CLOTHES', 'VEHICLES']}
               disabled={loading}
               onChange={onProductChange}
-              content={content}
+              value={product.category}
             ></Dropdown>
           </div>
 
@@ -92,7 +92,7 @@ const ProductForm = ({
               name='Description'
               disabled={loading}
               onChange={onProductChange}
-              content={content}
+              value={product.description}
               placeholder='Describe your product'
             ></Textarea>
           </div>
@@ -103,7 +103,7 @@ const ProductForm = ({
               name='Net Content'
               disabled={loading}
               onChange={onProductChange}
-              content={content}
+              value={product.netContent}
               placeholder='1000'
             ></Input>
           </div>
@@ -112,7 +112,7 @@ const ProductForm = ({
               name='Measurable Unit'
               disabled={loading}
               onChange={onProductChange}
-              content={content}
+              value={product.measurableUnit}
               placeholder='Liters'
             ></Input>
           </div>
@@ -121,7 +121,7 @@ const ProductForm = ({
               name='GTIN'
               disabled={loading}
               onChange={onProductChange}
-              content={content}
+              value={product.gtin}
               placeholder='Global Trade Item'
             ></Input>
           </div>

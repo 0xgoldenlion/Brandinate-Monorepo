@@ -1,18 +1,16 @@
 import React from 'react';
 
-import { Product } from '@/pages/catalog/new';
-
 export default function Input({
   name,
   disabled,
   onChange,
-  content,
+  value,
   placeholder,
 }: {
   name: string;
   disabled: boolean;
   onChange: (input: React.ChangeEvent<HTMLInputElement>) => void;
-  content: Product;
+  value?: string;
   placeholder: string;
 }) {
   function camelize(str: string): string {
@@ -41,9 +39,9 @@ export default function Input({
           autoComplete={formatedName}
           className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
           placeholder={placeholder}
-          value={content[formatedName as keyof Product]}
+          value={value}
           disabled={disabled}
-          onChange={(e) => onChange(e)}
+          onChange={onChange}
         />
       </div>
     </>

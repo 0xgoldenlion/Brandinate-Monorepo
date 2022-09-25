@@ -1,19 +1,17 @@
 import React from 'react';
 
-import { Product } from '@/pages/catalog/new';
-
 export default function Dropdown({
   name,
   options,
   disabled,
   onChange,
-  content,
+  value,
 }: {
   name: string;
   options: string[];
   disabled?: boolean;
   onChange: (input: React.ChangeEvent<HTMLSelectElement>) => void;
-  content: Product;
+  value?: string;
 }) {
   function camelize(str: string) {
     return str
@@ -40,7 +38,7 @@ export default function Dropdown({
           autoComplete={formatedName}
           className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
           disabled={disabled}
-          value={content[formatedName as keyof Product]}
+          value={value}
           onChange={(e) => onChange(e)}
         >
           {options.map((opt, index) => (
