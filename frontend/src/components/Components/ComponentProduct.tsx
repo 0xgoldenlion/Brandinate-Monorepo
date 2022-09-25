@@ -1,23 +1,26 @@
-import { FC, useState } from "react";
 import { PRODUCTS } from "data/data";
+import { FC, useState } from "react";
 //
 import Prices from "components/Objects/Prices";
 import Policy from "../Objects/MintGuide";
 import AccordionInfo from "../Objects/ProductInformation";
 //
 import ButtonPrimary from "shared/Button/ButtonPrimary";
-import SectionGridMoreExplore, { DEMO_MORE_EXPLORE_DATA } from "pages/ProductPage/ExploreUseCases";
-import BackgroundSection from "pages/ProductPage/BackgroundSection";
 //
-import ProductMain from "images/Product/ProductMain.png";
+import BackgroundSection from "pages/ProductPage/BackgroundSection";
+import SectionGridMoreExplore, {
+  DEMO_MORE_EXPLORE_DATA,
+} from "pages/ProductPage/ExploreUseCases";
+//
 import ProductLeft from "images/Product/ProductLeft.png";
+import ProductMain from "images/Product/ProductMain.png";
 import ProductRight from "images/Product/ProductRight.png";
 
 import { ethers } from "ethers";
 
-import BrandinateABI from '../../BrandinateABI.json'
-import axios from 'axios'
-import { LENS_DOES_FOLLOW_QUERY } from '../../LENS_DOES_FOLLOW_QUERY'
+import axios from "axios";
+import BrandinateABI from "../../BrandinateABI.json";
+import { LENS_DOES_FOLLOW_QUERY } from "../../LENS_DOES_FOLLOW_QUERY";
 
 export interface ComponentProductProps {
   className?: string;
@@ -32,14 +35,10 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
       <div className="space-y-7 2xl:space-y-8">
         {/* ---------- 1 HEADING ----------  */}
         <div>
-          <h2 className="text-2xl sm:text-3xl font-semibold">
-            HERO11 Black
-          </h2>
+          <h2 className="text-2xl sm:text-3xl font-semibold">HERO11 Black</h2>
           <div className="flex items-center mt-5 space-x-4 sm:space-x-5">
             {/* <div className="flex text-xl font-semibold">$112.00</div> */}
-            <a
-              className="flex items-center text-sm font-medium"
-            >
+            <a className="flex items-center text-sm font-medium">
               <div className="ml-1.5 flex">
                 <span className="text-slate-600 dark:text-slate-400 underline">
                   GoPro
@@ -58,24 +57,24 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
 
         {/*  ---------- 4  QTY AND ADD TO CART BUTTON */}
         <div className="flex space-x-3.5">
-
-          <ButtonPrimary
-            className="flex-1 flex-shrink-0"
-          >
-            <span className="ml-3" onClick={() => mintNft()}>{loading ? "Minting..." : "Mint"}</span>
+          <ButtonPrimary className="flex-1 flex-shrink-0">
+            <span className="ml-3" onClick={walletConnect}>
+              {signer === "" ? "Connect Wallet" : "Connected"}
+            </span>
           </ButtonPrimary>
-          <ButtonPrimary
-            className="flex-1 flex-shrink-0"
-          >
-            <span className="ml-3" onClick={() => walletConnect()}>Connect Wallet</span>
+        </div>
+        <div>Connected wallet: {signer}</div>
+        <div className="flex space-x-3.5">
+          <ButtonPrimary className="flex-1 flex-shrink-0">
+            <span className="ml-3" onClick={() => mintNft()}>
+              {loading ? "Minting" : "Claim"}
+            </span>
           </ButtonPrimary>
-
-          <ButtonPrimary
-            className="flex-1 flex-shrink-0"
-          >
-            <span className="ml-3" onClick={() => updateProductMetadata()}>Check If Follows Lens</span>
+          <ButtonPrimary className="flex-1 flex-shrink-0">
+            <span className="ml-3" onClick={updateProductMetadata}>
+              Activate
+            </span>
           </ButtonPrimary>
-          <div>{signer}</div>
         </div>
 
         {/*  */}
@@ -99,82 +98,104 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
         <h2 className="text-2xl font-semibold">About GoPro</h2>
         <div className="prose prose-sm sm:prose dark:prose-invert sm:max-w-4xl mt-7">
           <p>
-            GoPro is dedicated to helping people capture and share their lives in exciting ways. We’re passionate about our purpose — we believe sharing and reliving our experiences makes life more meaningful and fun.
+            GoPro is dedicated to helping people capture and share their lives
+            in exciting ways. We’re passionate about our purpose — we believe
+            sharing and reliving our experiences makes life more meaningful and
+            fun.
           </p>
           <p>
-            Our customers around the world bring our brand and to life. They help us see the world in new ways and motivate us to do more, including celebrating and supporting diversity within our workplace so that eventually no group goes underrepresented.
+            Our customers around the world bring our brand and to life. They
+            help us see the world in new ways and motivate us to do more,
+            including celebrating and supporting diversity within our workplace
+            so that eventually no group goes underrepresented.
           </p>
-          <p>
-            We are GoPro — we love what we do!
-          </p>
+          <p>We are GoPro — we love what we do!</p>
         </div>
       </div>
     );
   };
 
-  const [signer, setSigner] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [signer, setSigner] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const walletConnect = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
     // Prompt user for account connections
     await provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner();
-    setSigner(await signer.getAddress())
+    setSigner(await signer.getAddress());
     console.log("Account:", await signer.getAddress());
-  }
+  };
 
   const mintNft = async () => {
     try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+      const provider = new ethers.providers.Web3Provider(
+        window.ethereum,
+        "any"
+      );
       const signer = provider.getSigner();
-      const address = await signer.getAddress()
-      const contract = new ethers.Contract("0x0a0954902374F4cDA53f6696e78776AFA337572F", BrandinateABI.abi, signer);
-      setLoading(true)
-      const txnResponse = await contract.safeMint(address, "kjzl6kcym7w8y5xorh6sr9dvc7ll9rkyobnnh7573687knvjnz6boullyr3res5", "bafybeiar6miyaobqnyfrxjwbc3s7uenanmttjcqo2dg55533s6ftsuh4fu")
-      console.log(txnResponse)
+      const address = await signer.getAddress();
+      const contract = new ethers.Contract(
+        "0x0a0954902374F4cDA53f6696e78776AFA337572F",
+        BrandinateABI.abi,
+        signer
+      );
+      setLoading(true);
+      const txnResponse = await contract.safeMint(
+        address,
+        "kjzl6kcym7w8y5xorh6sr9dvc7ll9rkyobnnh7573687knvjnz6boullyr3res5",
+        "bafybeiar6miyaobqnyfrxjwbc3s7uenanmttjcqo2dg55533s6ftsuh4fu"
+      );
+      console.log(txnResponse);
       const txnReceipt = await txnResponse.wait();
-      console.log(txnReceipt)
-      setLoading(false)
+      console.log(txnReceipt);
+      setLoading(false);
     } catch (error) {
-      setLoading(false)
-      console.log(error)
+      setLoading(false);
+      console.log(error);
     }
-  }
+  };
 
-  const [doesFollow, setDoesFollow] = useState(false)
+  const [doesFollow, setDoesFollow] = useState(false);
 
   const updateProductMetadata = async () => {
     try {
-      const result = await axios
-        .post(
-          'https://api-sandbox-mumbai.lens.dev/',
-          {
-            query: LENS_DOES_FOLLOW_QUERY,
-            variables: { address: signer },
-          }
-        );
-      console.log()
+      const result = await axios.post("https://api-sandbox-mumbai.lens.dev/", {
+        query: LENS_DOES_FOLLOW_QUERY,
+        variables: { address: signer },
+      });
+      console.log();
 
-      const doesFollow = result.data.data.doesFollow[0].follows
+      const doesFollow = result.data.data.doesFollow[0].follows;
       if (doesFollow) {
-        setDoesFollow(true)
-        const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+        setDoesFollow(true);
+        const provider = new ethers.providers.Web3Provider(
+          window.ethereum,
+          "any"
+        );
         const signer = provider.getSigner();
-        const address = await signer.getAddress()
-        const contract = new ethers.Contract("0x0a0954902374F4cDA53f6696e78776AFA337572F", BrandinateABI.abi, signer);
-        setLoading(true)
-        const txnResponse = await contract.safeMint(address, "kjzl6kcym7w8y5xorh6sr9dvc7ll9rkyobnnh7573687knvjnz6boullyr3res5", "bafybeiar6miyaobqnyfrxjwbc3s7uenanmttjcqo2dg55533s6ftsuh4fu")
-        console.log(txnResponse)
+        const address = await signer.getAddress();
+        const contract = new ethers.Contract(
+          "0x0a0954902374F4cDA53f6696e78776AFA337572F",
+          BrandinateABI.abi,
+          signer
+        );
+        setLoading(true);
+        const txnResponse = await contract.safeMint(
+          address,
+          "kjzl6kcym7w8y5xorh6sr9dvc7ll9rkyobnnh7573687knvjnz6boullyr3res5",
+          "bafybeiar6miyaobqnyfrxjwbc3s7uenanmttjcqo2dg55533s6ftsuh4fu"
+        );
+        console.log(txnResponse);
         const txnReceipt = await txnResponse.wait();
-        console.log(txnReceipt)
+        console.log(txnReceipt);
       } else {
-        setDoesFollow(false)
+        setDoesFollow(false);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className={`nc-ComponentProduct ${className}`}>
@@ -226,13 +247,7 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
 
           {renderDetailSection()}
 
-
-
-
-
-
           <hr className="border-slate-200 dark:border-slate-700" />
-
         </div>
 
         <div className="container relative space-y-24 my-24 lg:space-y-32 lg:my-32">

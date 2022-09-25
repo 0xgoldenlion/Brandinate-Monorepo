@@ -1,26 +1,28 @@
 import React from 'react';
-import { ProductType } from '@/pages/catalog/new';
 
 export default function Textarea({
   name,
   disabled,
   onChange,
-  content,
+  value,
   ...props
 }: {
   name: string;
   disabled: boolean;
   onChange: (input: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  content: ProductType;
+  value?: string;
   [key: string]: any;
 }) {
   function camelize(str: string) {
-    return str.toLowerCase().replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-      return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    }).replace(/\s+/g, '');
+    return str
+      .toLowerCase()
+      .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+        return index === 0 ? word.toLowerCase() : word.toUpperCase();
+      })
+      .replace(/\s+/g, '');
   }
-  
-  const formatedName = camelize(name)
+
+  const formatedName = camelize(name);
 
   return (
     <>
@@ -35,7 +37,7 @@ export default function Textarea({
           className='mt-1 !h-full w-full resize-none rounded border-gray-300 text-sm shadow-sm'
           name={formatedName}
           autoComplete={formatedName}
-          value={content[formatedName as keyof ProductType]}
+          value={value}
           disabled={disabled}
           onChange={(e) => onChange(e)}
           {...(props ?? {})}

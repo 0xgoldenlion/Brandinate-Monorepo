@@ -1,26 +1,28 @@
 import React from 'react';
-import { ProductType } from '@/pages/catalog/new';
 
 export default function Dropdown({
   name,
   options,
   disabled,
   onChange,
-  content,
+  value,
 }: {
   name: string;
   options: string[];
   disabled?: boolean;
   onChange: (input: React.ChangeEvent<HTMLSelectElement>) => void;
-  content: ProductType;
+  value?: string;
 }) {
   function camelize(str: string) {
-    return str.toLowerCase().replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-      return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    }).replace(/\s+/g, '');
+    return str
+      .toLowerCase()
+      .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+        return index === 0 ? word.toLowerCase() : word.toUpperCase();
+      })
+      .replace(/\s+/g, '');
   }
-  
-  const formatedName = camelize(name)
+
+  const formatedName = camelize(name);
 
   return (
     <>
@@ -36,7 +38,7 @@ export default function Dropdown({
           autoComplete={formatedName}
           className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
           disabled={disabled}
-          value={content[formatedName as keyof ProductType]}
+          value={value}
           onChange={(e) => onChange(e)}
         >
           {options.map((opt, index) => (
