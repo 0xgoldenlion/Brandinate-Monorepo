@@ -59,11 +59,11 @@ const ComponentProduct: FC<ComponentProductProps> = ({ className = "" }) => {
         <div className="flex space-x-3.5">
           <ButtonPrimary className="flex-1 flex-shrink-0">
             <span className="ml-3" onClick={walletConnect}>
-              Connect Wallet
+              {signer === "" ? "Connect Wallet" : "Connected"}
             </span>
           </ButtonPrimary>
         </div>
-        <div>{signer}</div>
+        <div>Connected wallet: {signer}</div>
         <div className="flex space-x-3.5">
           <ButtonPrimary className="flex-1 flex-shrink-0">
             <span className="ml-3" onClick={() => mintNft()}>
