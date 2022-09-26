@@ -4,6 +4,7 @@ import ComponentHero from "components/Components/ComponentHero";
 import ComponentUserFlow from "components/Components/ComponentUserFlow";
 import ComponentSection from "components/Components/ComponentSection";
 import ComponentProduct from "components/Components/ComponentProduct";
+import ComponentUserCollection from "components/Components/ComponentUserCollection";
 import ComponentSlider from "components/Components/ComponentSlider";
 
 function LandingPage() {
@@ -19,6 +20,7 @@ function LandingPage() {
         <ComponentUserFlow />
         <ComponentSection />
         <ComponentProduct />
+        <ComponentUserCollection />
         <ComponentSlider />
       </div>
     </div>

@@ -28,6 +28,8 @@ contract Brandinate is ERC721URIStorage, Ownable {
         return userToTokens[_owner];
     }
 
+    function updateTokenUri(uint256 tokenId) public {}
+
     // Our will be pulled from the network
     string private _baseURIString =
         "https://testnet.tableland.network/query?s=";
@@ -48,7 +50,7 @@ contract Brandinate is ERC721URIStorage, Ownable {
                 _tablePrefix,
                 "_",
                 Strings.toString(block.chainid),
-                " (id int, ceramic_link text, ipfs_link text);"
+                " (id int, ceramic_link text, ipfs_link text, followsLensProfile int);"
             )
         );
 
@@ -63,50 +65,6 @@ contract Brandinate is ERC721URIStorage, Ownable {
             "_",
             Strings.toString(_metadataTableId)
         );
-    }
-
-    function createMetadataTable(address registry)
-        external
-        payable
-        onlyOwner
-        returns (uint256)
-    {
-        /*
-         * registry if the address of the Tableland registry. You can always find those
-         * here https://github.com/tablelandnetwork/evm-tableland#currently-supported-chains
-         */
-        _tableland = ITablelandTables(registry);
-
-        _metadataTableId = _tableland.createTable(
-            address(this),
-            /*
-             *  CREATE TABLE prefix_chainId (
-             *    int id,
-             *    string name,
-             *    string description,
-             *    string external_link,
-             *    int x,
-             *    int y
-             *  );
-             */
-            string.concat(
-                "CREATE TABLE ",
-                _tablePrefix,
-                "_",
-                Strings.toString(block.chainid),
-                " (id int, ceramic_link text, ipfs_link text);"
-            )
-        );
-
-        _metadataTable = string.concat(
-            _tablePrefix,
-            "_",
-            Strings.toString(block.chainid),
-            "_",
-            Strings.toString(_metadataTableId)
-        );
-
-        return _metadataTableId;
     }
 
     /*
@@ -126,19 +84,54 @@ contract Brandinate is ERC721URIStorage, Ownable {
             string.concat(
                 "INSERT INTO ",
                 _metadataTable,
-                " (id, ceramic_link, ipfs_link) VALUES (",
+                " (id, ceramic_link, ipfs_link, followsLensProfile) VALUES (",
                 Strings.toString(newItemId),
                 ", '",
                 ceramic_link,
                 "', '",
                 ipfs_link,
-                "');"
+                "', 0",
+                ");"
             )
         );
         _safeMint(to, newItemId, "");
         userToTokens[msg.sender].push(newItemId);
         _tokenIds.increment();
         return newItemId;
+    }
+
+    function getInsertStatement() public view returns (string memory) {
+        return
+            string.concat(
+                "INSERT INTO ",
+                _metadataTable,
+                " (id, ceramic_link, ipfs_link, followsLensProfile) VALUES (",
+                "Strings.toString(newItemId)",
+                ", '",
+                "ceramic_link",
+                "', '",
+                "ipfs_link",
+                "', 0",
+                ");"
+            );
+    }
+
+    function updateTablelandMetadata(uint256 tokenId)
+        public
+        returns (string memory)
+    {
+        string memory base = _baseURI();
+
+        string memory updateStatement = string.concat(
+            "update%20",
+            _metadataTable,
+            "%20set%20followsLensProfile=1"
+            "%20WHERE%20id=",
+            Strings.toString(tokenId),
+            ";"
+        );
+
+        _tableland.runSQL(address(this), _metadataTableId, updateStatement);
     }
 
     function _baseURI() internal view override returns (string memory) {
@@ -171,7 +164,7 @@ contract Brandinate is ERC721URIStorage, Ownable {
         return
             string.concat(
                 base,
-                "SELECT%20json_object(%27id%27,id,%27ceramic_link%27,ceramic_link,%27ipfs_link%27,ipfs_link)%20as%20meta%20FROM%20",
+                "SELECT%20json_object(%27id%27,id,%27ceramic_link%27,ceramic_link,%27ipfs_link%27,ipfs_link,%27followsLensProfile%27,followsLensProfile)%20as%20meta%20FROM%20",
                 _metadataTable,
                 "%20WHERE%20id=",
                 Strings.toString(tokenId),

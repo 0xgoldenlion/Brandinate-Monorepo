@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 //
 import ButtonPrimary from "shared/Button/ButtonPrimary";
-import ButtonSecondary from "shared/Button/ButtonSecondary";
 
 export default function HeaderWallet() {
   return (
