@@ -1,46 +1,47 @@
-import { useEffect, useId } from "react";
 import Heading from "components/Heading/Heading";
-import img1 from "images/collections/1.png";
-import img2 from "images/collections/5.png";
-import img3 from "images/collections/4.png";
-import img4 from "images/collections/3.png";
+import { useEffect, useId } from "react";
 //
+import Ceramic from "images/Sponsors/Ceramic.svg";
+import IPFS from "images/Sponsors/IPFS.svg";
+import Polygon from "images/Sponsors/Polygon.svg";
+import Spruce from "images/Sponsors/Spruce.svg";
 import Tableland from "images/Sponsors/Tableland.svg";
+import TheGraph from "images/Sponsors/TheGraph.svg";
 
+import Glide from "@glidejs/glide";
 import CardCategory3, {
   CardCategory3Props,
 } from "../CardCategories/CardCategory3";
-import Glide from "@glidejs/glide";
 
 export const TechStack: CardCategory3Props[] = [
   {
     name: "Sponsor",
     desc: "Ceramic",
-    featuredImage: img1,
+    featuredImage: Ceramic,
     color: "bg-slate-100/80",
   },
   {
     name: "Sponsor",
     desc: "The Graph",
-    featuredImage: img2,
+    featuredImage: TheGraph,
     color: "bg-slate-100/80",
   },
   {
     name: "Sponsor",
     desc: "IPFS",
-    featuredImage: img3,
+    featuredImage: IPFS,
     color: "bg-slate-100/80",
   },
   {
     name: "Sponsor",
     desc: "Polygon",
-    featuredImage: img4,
+    featuredImage: Polygon,
     color: "bg-slate-100/80",
   },
   {
     name: "Sponsor",
     desc: "Spruce",
-    featuredImage: img4,
+    featuredImage: Spruce,
     color: "bg-slate-100/80",
   },
   {
@@ -92,9 +93,7 @@ const ComponentSlider = () => {
 
   return (
     <div className={`${UNIQUE_CLASS}`}>
-      <Heading
-        className="mb-12 lg:mb-14 text-[#1d1e5f] dark:text-neutral-50 nc-p-r-container "
-      >
+      <Heading className="mb-12 lg:mb-14 text-[#1d1e5f] dark:text-neutral-50 nc-p-r-container ">
         Explore our tech stack.
       </Heading>
       <div className="" data-glide-el="track">
