@@ -1,21 +1,17 @@
-import { useEffect, useId } from "react";
 import Heading from "components/Heading/Heading";
-import img1 from "images/collections/1.png";
-import img2 from "images/collections/5.png";
-import img3 from "images/collections/4.png";
-import img4 from "images/collections/3.png";
+import { useEffect, useId } from "react";
 //
-import Tableland from "images/Sponsors/Tableland.svg";
-import Spruce from "images/Sponsors/Spruce.svg";
-import TheGraph from "images/Sponsors/TheGraph.svg";
+import Ceramic from "images/Sponsors/Ceramic.svg";
 import IPFS from "images/Sponsors/IPFS.svg";
 import Polygon from "images/Sponsors/Polygon.svg";
-import Ceramic from "images/Sponsors/Ceramic.svg";
+import Spruce from "images/Sponsors/Spruce.svg";
+import Tableland from "images/Sponsors/Tableland.svg";
+import TheGraph from "images/Sponsors/TheGraph.svg";
 
+import Glide from "@glidejs/glide";
 import CardCategory3, {
   CardCategory3Props,
 } from "../CardCategories/CardCategory3";
-import Glide from "@glidejs/glide";
 
 export const TechStack: CardCategory3Props[] = [
   {
