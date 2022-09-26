@@ -47,17 +47,8 @@ const CardCategory4: FC<CardCategory4Props> = ({
             </span>
             <h2 className={`text-2xl sm:text-3xl font-semibold`}>{name}</h2>
           </div>
-
-          <Link
-            to={"/blog-single"}
-            className="flex items-center text-sm font-medium group-hover:text-primary-500 transition-colors"
-          >
-            <span>Learn More</span>
-          </Link>
         </div>
       </div>
-
-      <Link to={"/blog-single"}></Link>
     </div>
   );
 };

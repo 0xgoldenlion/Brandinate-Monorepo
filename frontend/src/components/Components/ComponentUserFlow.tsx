@@ -1,14 +1,13 @@
 import { FC } from "react";
 import NcImage from "shared/NcImage/NcImage";
-import Gradient from "images/Gradient.png"
-import VectorImg from "images/VectorHIW.svg";
 import Badge from "shared/Badge/Badge";
 //
-import Error from "images/Graphics/Error.svg"; 
-import Step1Graphic from "images/Graphics/Step1Graphic.svg";
-import Step2Graphic from "images/Graphics/Step2Graphic.svg";
-import Step3Graphic from "images/Graphics/Step3Graphic.svg";
-import Step4Graphic from "images/Graphics/Step4Graphic.svg";
+import Step1Graphic from "images/Graphics/Step1Graphic.png";
+import Step2Graphic from "images/Graphics/Step2Graphic.png";
+import Step3Graphic from "images/Graphics/Step3Graphic.png";
+import Step4Graphic from "images/Graphics/Step4Graphic.png";
+//
+import Test2 from "images/Graphics/Test2.png";
 
 export interface ComponentUserFlowProps {
   className?: string;
@@ -19,30 +18,30 @@ const DEMO_DATA = [
   {
     id: 1,
     img: Step1Graphic,
-    imgDark: Gradient,
-    title: "Upload a Product",
+    imgDark: Step1Graphic,
+    title: "Create a Brand Account",
     desc: "Smart filtering and suggestions make it easy to find",
   },
   {
     id: 2,
     img: Step2Graphic,
-    imgDark: Gradient,
-    title: "Add to bag",
-    desc: "Easily select the correct items and add them to the cart",
+    imgDark: Step2Graphic,
+    title: "Upload Product Information",
+    desc: "authentic, cryptographically-verifiable product information.",
   },
   {
     id: 3,
-    img: Step3Graphic,
-    imgDark: Gradient,
-    title: "Mint a Product Token",
+    img: Test2,
+    imgDark: Test2,
+    title: "Issue a Digital Twin",
     desc: "The carrier will confirm and ship quickly to you",
   },
   {
     id: 4,
     img: Step4Graphic,
-    imgDark: Gradient,
-    title: "Enjoy the product",
-    desc: "Have fun and enjoy your 5-star quality products",
+    imgDark: Step4Graphic,
+    title: "Reward User Behavior",
+    desc: "Engage customers with acustom digital twin as a dNFT.",
   },
 ];
 
@@ -56,18 +55,13 @@ const ComponentUserFlow: FC<ComponentUserFlowProps> = ({
       data-nc-id="ComponentUserFlow"
     >
       <div className="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-16 xl:gap-20">
-        <img
-          className="hidden md:block absolute inset-x-0 top-5"
-          src={VectorImg}
-          alt="vector"
-        />
         {data.map((item: typeof DEMO_DATA[number], index: number) => (
           <div
             key={item.id}
             className="relative flex flex-col items-center max-w-xs mx-auto"
           >
             <NcImage
-              containerClassName="mb-4 sm:mb-10 max-w-[140px] mx-auto"
+              containerClassName="mb-4 sm:mb-10 max-w-[1480px] mx-auto"
               className="rounded-3xl"
               src={item.img}
             />
@@ -76,16 +70,16 @@ const ComponentUserFlow: FC<ComponentUserFlowProps> = ({
                 name={`STEP ${index + 1}`}
                 color={
                   !index
-                    ? "red"
+                    ? "pink"
                     : index === 1
-                    ? "indigo"
-                    : index === 2
-                    ? "yellow"
-                    : "purple"
+                      ? "pink"
+                      : index === 2
+                        ? "pink"
+                        : "pink"
                 }
               />
-              <h3 className="text-base font-semibold">{item.title}</h3>
-              <span className="block text-slate-600 dark:text-slate-400 text-sm leading-6">
+              <h3 className="text-[#1d1e5f] font-semibold">{item.title}</h3>
+              <span className="block text-[#1d1e5f] dark:text-slate-400 text-sm leading-6">
                 {item.desc}
               </span>
             </div>
